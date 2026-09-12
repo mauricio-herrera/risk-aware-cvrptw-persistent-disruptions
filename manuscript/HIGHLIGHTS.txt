@@ -1,5 +1,5 @@
-• Persistent disruption clustering raises upper-tail tardiness even after matching mean environmental impact.
-• CVaR-oriented adaptive ALNS improves the prespecified tail-risk objective on all nine operational days.
-• Learned operator selection shows no robust incremental advantage under matched online search budgets and zero-shot transfer.
-• Causal DDDAS recourse is selective: only 87 of 523 attempts change a route, and local conditional gains do not guarantee ex-post gains.
-• The framework keeps Hawkes disruptions exogenous and separates common environmental memory from route-dependent temporal exposure.
+• Persistent disruptions increase upper-tail tardiness even at matched mean impact.
+• CVaR-oriented ALNS improves tail-risk performance on all nine operational days.
+• Learned operator selection shows no robust gain under matched search budgets.
+• DDDAS recourse changes only 87 of 523 attempts and may worsen realized cost.
+• Hawkes disruptions are exogenous; route effects arise through temporal exposure.
