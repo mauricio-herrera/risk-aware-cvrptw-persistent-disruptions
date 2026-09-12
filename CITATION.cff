@@ -6,10 +6,17 @@ authors:
   - family-names: "Herrera-Marín"
     given-names: "Mauricio"
     affiliation: "Universidad del Desarrollo"
+    orcid: "https://orcid.org/0000-0002-9604-3077"
 version: 1.0.0
 date-released: 2026-09-12
+doi: "10.5281/zenodo.22726346"
 repository-code: "https://github.com/mauricio-herrera/risk-aware-cvrptw-persistent-disruptions"
+url: "https://doi.org/10.5281/zenodo.22726346"
 license: MIT
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.22726345"
+    description: "Concept DOI for all versions"
 keywords:
   - CVRPTW
   - CVaR
