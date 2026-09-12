@@ -1,0 +1,25 @@
+{
+  "runs": 180,
+  "unique_day_path_units": 60,
+  "selected_days": [
+    2,
+    5,
+    7
+  ],
+  "recourse_attempts": 523,
+  "route_changing_attempts": 87,
+  "route_change_fraction_per_attempt": 0.16634799235181644,
+  "decision_cap_terminations": 194,
+  "decision_cap_fraction_per_attempt": 0.37093690248565964,
+  "runs_with_route_change": 65,
+  "runs_without_route_change": 115,
+  "all_changed_attempts_positive_search_gain": true,
+  "changed_attempts_with_positive_search_gain": 87,
+  "changed_attempts_altering_immediate_next_node": 19,
+  "changed_runs_delta_J_positive": 18,
+  "changed_runs_delta_J_zero": 3,
+  "changed_runs_delta_J_negative": 44,
+  "total_conditional_scenario_evaluations": 8393300,
+  "total_dddas_wall_hours": 0.38679479018540913,
+  "delta_sign_tolerance": 1e-12
+}

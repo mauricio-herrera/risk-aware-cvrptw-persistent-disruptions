@@ -1,0 +1,33 @@
+{
+  "stage": "R5-H confirmatory statistical analysis",
+  "frozen_inputs_verified": true,
+  "run_level_rows": 180,
+  "path_level_units": 60,
+  "selected_days": [
+    2,
+    5,
+    7
+  ],
+  "route_replicates_per_day_path": 3,
+  "realized_paths_per_day": 20,
+  "bootstrap_reps": 50000,
+  "bootstrap_seed": 20260910,
+  "bootstrap_interpretation": "Monte Carlo uncertainty conditional on each prospectively selected day; not population-level cross-day inference.",
+  "cross_day_inference": "descriptive only because the deep R5-H analysis contains three selected days",
+  "positive_delta_interpretation": "positive delta_distance, delta_tardiness, and delta_J favor DDDAS",
+  "operational_total": {
+    "runs": 180,
+    "unique_realized_environments": 60,
+    "recourse_attempts": 523,
+    "decision_cap_terminations": 194,
+    "decision_cap_fraction": 0.37093690248565964,
+    "route_changes": 87,
+    "route_change_fraction_per_attempt": 0.16634799235181644,
+    "conditional_scenario_evaluations": 8393300,
+    "total_DDDAS_wall_seconds": 1392.4612446674728,
+    "mean_DDDAS_wall_seconds_per_run": 7.735895803708182,
+    "max_DDDAS_wall_seconds_per_run": 75.64694883400807,
+    "mean_recourse_runtime_seconds": 2.4163284293211413,
+    "max_recourse_runtime_seconds": 20.731322082981933
+  }
+}

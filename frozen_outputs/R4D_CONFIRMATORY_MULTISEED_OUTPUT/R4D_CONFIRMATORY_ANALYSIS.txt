@@ -1,0 +1,38 @@
+================================================
+R4-D CONFIRMATORY MULTISEED ANALYSIS
+================================================
+Replicates: 10
+Structural budget gate: PASS
+Contrast reconstruction gate: PASS
+max reconstruction error = 5.684e-14
+
+PRE-SPECIFIED / SECONDARY CONTRASTS
+                           contrast      mean        sd  ci95_boot_lo  ci95_boot_hi  exact_signflip_p  positive_replicates  ties  negative_replicates
+PRIMARY C1: OR CVaR eta=.70 - eta=0 52.502867  5.820179     49.140229     55.931850          0.001953                   10     0                    0
+          PRIMARY C2: [G(.70)-G(0)]  9.156929 41.495446    -15.229651     33.310390          0.494141                    6     0                    4
+  OR mean tardiness eta=.70 - eta=0  3.771370  0.612512      3.407742      4.124900          0.001953                   10     0                    0
+            OR CVaR eta=.35 - eta=0 12.776938  7.904533      8.371651     17.635667          0.001953                   10     0                    0
+                            G eta=0 10.244573 19.797021     -0.536660     22.564172          0.166016                    7     0                    3
+                          G eta=.35 10.818627 16.371803      0.990455     20.186446          0.068359                    8     0                    2
+                          G eta=.70 19.401502 31.379834      0.966061     37.940958          0.078125                    7     0                    3
+               Tail-CVaR gain eta=0  7.552286  8.882962      2.553991     12.979378          0.029297                    7     0                    3
+             Tail-CVaR gain eta=.35  7.879313  8.294083      3.024029     12.796652          0.015625                    9     0                    1
+             Tail-CVaR gain eta=.70 11.830751 14.886564      3.553175     21.110376          0.027344                    7     0                    3
+      Tail-gain interaction .70 - 0  4.278465 18.872512     -6.309802     15.820241          0.517578                    6     0                    4
+           Route multiplier .70 - 0 -0.002569  0.001444     -0.003435     -0.001750          0.001953                    0     0                   10
+
+METHOD AGGREGATES
+ eta    method  distance_mean  tard_mean_mean  tard_cvar95_mean  J_cvar_mean  route_multiplier_mean
+0.00 ALNS-CVaR         376.62        0.599011          8.227498   393.074996               1.048279
+0.00 ALNS-Mean         371.76        1.550409         15.779784   403.319569               1.048203
+0.00  OR-Tools         367.20       13.415144         60.741133   488.682265               1.048331
+0.35 ALNS-CVaR         378.22        0.801332          8.701117   395.622235               1.047729
+0.35 ALNS-Mean         373.28        1.467817         16.580431   406.440861               1.047633
+0.35  OR-Tools         367.20       14.249039         73.518070   514.236141               1.047472
+0.70 ALNS-CVaR         378.21        1.871909         21.612032   421.434064               1.045825
+0.70 ALNS-Mean         373.95        2.924016         33.442783   440.835566               1.046112
+0.70  OR-Tools         367.20       17.186514        113.244000   593.687999               1.045762
+
+================================================
+R4-D CONFIRMATORY ANALYSIS: PASS
+================================================

@@ -1,0 +1,9 @@
+method,training_scenario_evals,validation_scenario_evals,search_scenario_evals,search_evaluated_candidates,search_operator_decisions,search_null_proposals,training_runtime_s,search_runtime_s
+OR-Tools,0,0,0,0,0,0,0.0,0.0
+ALNS-Nominal,0,0,0,250,332,82,0.0,33.79746520799927
+ALNS-Mean,0,0,25100,250,285,35,0.0,33.58674266699927
+ALNS-CVaR,0,0,25100,250,311,61,0.0,38.52484087499943
+Uniform-Mean-FFseed,0,0,25100,250,282,32,0.0003672920011013048,35.42878670900063
+Uniform-CVaR-FFseed,0,0,25100,250,260,10,0.00034500000037951395,28.221533582998745
+Uniform-Mean-GRUseed,0,0,25100,250,274,24,0.0003574580005079042,31.521062916999654
+Uniform-CVaR-GRUseed,0,0,25100,250,265,15,0.00035604200093075633,27.9233427500003

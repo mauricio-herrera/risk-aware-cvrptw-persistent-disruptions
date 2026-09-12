@@ -1,0 +1,7 @@
+method,scenario_evals,evaluated_candidates
+ALNS-Mean,25100,250
+ALNS-CVaR,25100,250
+RL-FF-Mean,25100,250
+RL-FF-CVaR,25100,250
+RL-GRU-Mean,25100,250
+RL-GRU-CVaR,25100,250

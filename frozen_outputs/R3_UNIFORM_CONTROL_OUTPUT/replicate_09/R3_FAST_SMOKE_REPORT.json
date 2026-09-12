@@ -1,0 +1,85 @@
+{
+  "stage": "R2A-V4 Day-1 Fairness Pilot",
+  "status": "PASS",
+  "warning": "Pilot only; not final manuscript evidence.",
+  "machine": "arm64",
+  "python": "3.12.13",
+  "torch": "2.2.2",
+  "device": "cpu",
+  "day": {
+    "day": 1,
+    "n_customers": 78,
+    "regularized_arcs": 469,
+    "regularized_fraction": 0.07611165206101915,
+    "tw_width_mean_min": 180.0,
+    "tw_width_median_min": 180.0,
+    "total_weight_kg": 1880.498,
+    "total_volume_m3": 9.020040000000002,
+    "od_envelope_spread_mean_min": 24.284323271665045
+  },
+  "integerization": {
+    "zero_positive_weight_after_scaling": 0,
+    "zero_positive_volume_after_scaling": 0,
+    "capacity_weight_units": 360429,
+    "capacity_volume_units": 1951780
+  },
+  "hawkes": {
+    "mu": 0.01,
+    "beta": 0.6,
+    "eta": 0.35,
+    "horizon_min": 523.8340263032226
+  },
+  "coupling": {
+    "kappa": 0.9,
+    "clip_min": 0.5,
+    "clip_max": 3.0
+  },
+  "scenario_banks": {
+    "train": {
+      "n": 100,
+      "seed": 41001
+    },
+    "validation": {
+      "n": 100,
+      "seed": 42001
+    },
+    "search": {
+      "n": 100,
+      "seed": 43001
+    },
+    "test": {
+      "n": 1000,
+      "seed": 44001
+    }
+  },
+  "bank_generation_runtime_s": 4.37925712499964,
+  "neighborhood": {
+    "destroy_fraction_min": 0.1,
+    "destroy_fraction_max": 0.15,
+    "max_distinct_attempts": 5,
+    "status": "FROZEN BEFORE V4 method comparison"
+  },
+  "rl": {
+    "episodes": 20,
+    "steps_per_episode": 25,
+    "hidden_dim": 64,
+    "learning_rate": 0.001,
+    "gamma": 0.99,
+    "entropy_beta": 0.01,
+    "training_and_search": "separated",
+    "frozen_policy_search": true
+  },
+  "search_fairness": {
+    "evaluated_candidates": 250,
+    "scenario_bank_size": 100,
+    "scenario_evals_per_stochastic_method": 25100,
+    "matched": true,
+    "null_proposals_do_not_consume_mc_budget": true
+  },
+  "ortools": {
+    "distance_km": 367.20000000000005,
+    "nominal_tardiness_min": 0.0,
+    "over_weight_kg": 0.0,
+    "over_volume_m3": 0.0
+  }
+}

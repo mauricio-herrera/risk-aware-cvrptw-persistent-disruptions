@@ -1,0 +1,33 @@
+{
+  "stage": "R5-H0 representative-day freeze",
+  "selection_used_dddas_results": false,
+  "selection_used_r4_stochastic_results": false,
+  "day1_excluded_due_to_r5_development": true,
+  "candidate_days": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "features": [
+    "n_customers",
+    "regularized_fraction",
+    "distance_km",
+    "max_weight_utilization",
+    "max_volume_utilization"
+  ],
+  "standardization": "population z score over Days 2--9",
+  "selection_rule": "exact exhaustive 3-medoids; minimum sum of squared Euclidean distance to nearest selected day",
+  "tie_break": "lexicographically smallest day tuple",
+  "selected_days": [
+    2,
+    5,
+    7
+  ],
+  "objective": 20.18039261018096,
+  "source_csv_sha256": "e978822bec117631eeb1c0e9e03d62f16aa24f26d5050b5b42b6470700ecb72f"
+}

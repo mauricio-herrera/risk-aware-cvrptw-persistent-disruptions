@@ -1,0 +1,53 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=22mm]{geometry}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage[hidelinks]{hyperref}
+\usepackage{amsmath}
+\title{Supplementary Material\\Risk-Aware Last-Mile Routing under Persistent Disruptions: Tail-Risk Planning and Selective Dynamic Recourse}
+\author{Mauricio Herrera-Mar\'in}
+\date{}
+\begin{document}
+\maketitle
+\section*{Scope and provenance}
+Figures S1--S6 are reconstructed only from the confirmatory R3/R4/R5 result summaries carried into the revision package. No R2, smoke-test, pilot, or other legacy result is used as scientific evidence. No geographic route map is included and no Athens coordinates are inferred or invented. If a future route visualization is required in the absence of verified coordinates, it must use a two-dimensional embedding of the observed distance matrix and be labelled explicitly as a \emph{distance-preserving schematic layout}, not a geographic map.
+
+\begin{figure}[ht]
+\centering\includegraphics[width=\textwidth]{figures/supplementary/pdf/FigS1_R3_budget_parity.pdf}
+\caption{\textbf{R3 online-search fairness audit.} All six confirmatory source-day methods use exactly 25,100 stochastic scenario evaluations and 250 evaluated candidate routes per search. Offline RL training is intentionally excluded from this online-budget equality and is reported separately in the main text.}
+\label{fig:s1}
+\end{figure}
+
+\begin{figure}[ht]
+\centering\includegraphics[width=\textwidth]{figures/supplementary/pdf/FigS2_R4D_mean_impact_control.pdf}
+\caption{\textbf{R4D mean-impact matching.} The impact coefficient $\kappa_\eta$ is adjusted as Hawkes persistence changes so that the continuous-time mean environmental travel-time multiplier is held at the frozen target 1.052489. This control separates temporal clustering from a simple increase in mean environmental impact.}
+\label{fig:s2}
+\end{figure}
+
+\begin{figure}[ht]
+\centering\includegraphics[width=0.72\textwidth]{figures/supplementary/pdf/FigS3_R4E1_joint_crossday_gains.pdf}
+\caption{\textbf{R4E1 joint nine-day gains.} Each point is one operational day after averaging its three paired optimization repetitions. Both prespecified static-minus-CVaR contrasts are positive on all nine days: the aligned $J_{\mathrm{CVaR}}$ objective and $\mathrm{CVaR}_{0.95}$ tardiness. The day, rather than the optimization replicate, is the primary inferential unit.}
+\label{fig:s3}
+\end{figure}
+
+\begin{figure}[ht]
+\centering\includegraphics[width=\textwidth]{figures/supplementary/pdf/FigS4_R4E2_zero_shot_audit.pdf}
+\caption{\textbf{R4E2 zero-shot transfer integrity.} Ten frozen Day~1 source checkpoints are evaluated on each target Day~2--9, giving 80 transfer reports. The structural audit confirms matched search budgets, unchanged learned weights, and no target-day training, validation, or gradient updates in all 80 reports. These checks support the zero-shot interpretation; they do not imply a performance advantage for RL, and the main text reports that none of the four prespecified learned-versus-uniform contrasts remains significant after Holm correction.}
+\label{fig:s4}
+\end{figure}
+
+\begin{figure}[ht]
+\centering\includegraphics[width=0.72\textwidth]{figures/supplementary/pdf/FigS5_R5H_operational_counts.pdf}
+\caption{\textbf{R5-H bounded-recourse accounting.} Across Days~2, 5, and 7 the causal DDDAS controller makes 523 recourse attempts, executes 87 route changes, and reaches the 25,000-operator-decision cap in 194 attempts. The trigger therefore initiates reconsideration rather than compulsory rerouting.}
+\label{fig:s5}
+\end{figure}
+
+\begin{figure}[ht]
+\centering\includegraphics[width=\textwidth]{figures/supplementary/pdf/FigS6_R5H_conditional_vs_realized.pdf}
+\caption{\textbf{R5-H conditional-versus-realized distinction.} All 87 executed route modifications improve the local conditional CVaR search objective on the decision-time scenario bank. Among the 65 complete runs with at least one route change, however, the realized composite objective improves in 18 runs, ties within $10^{-12}$ in 3, and worsens in 44. Only 19 of 87 modifications change the immediate next customer; 68 alter a later part of the unexecuted suffix.}
+\label{fig:s6}
+\end{figure}
+
+\section*{Confirmatory interpretation constraints}
+The supplementary figures are interpreted under the same frozen scientific constraints as the main manuscript: the Hawkes process is exogenous; the OMI is a common environmental state; routes do not feed back into Hawkes intensity; $\alpha=0.95$ for CVaR; ALNS is genuinely adaptive; RL shows no robust incremental advantage under the matched protocol; and DDDAS conditions only on information observed before the decision epoch and edits only the affected unexecuted suffix.
+\end{document}

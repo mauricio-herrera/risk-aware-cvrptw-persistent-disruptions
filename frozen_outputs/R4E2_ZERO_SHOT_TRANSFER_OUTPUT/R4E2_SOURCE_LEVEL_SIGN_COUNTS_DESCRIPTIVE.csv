@@ -1,0 +1,7 @@
+contrast,label,n_source_target_combinations,negative,ties,positive,note
+FF_Mean_RL_minus_Uniform,FF Mean: RL - Uniform,80,41,4,35,Descriptive only. The cross-instance inference unit is target day.
+GRU_Mean_RL_minus_Uniform,GRU Mean: RL - Uniform,80,39,5,36,Descriptive only. The cross-instance inference unit is target day.
+FF_CVaR_RL_minus_Uniform,FF CVaR: RL - Uniform,80,35,2,43,Descriptive only. The cross-instance inference unit is target day.
+GRU_CVaR_RL_minus_Uniform,GRU CVaR: RL - Uniform,80,37,2,41,Descriptive only. The cross-instance inference unit is target day.
+GRU_minus_FF_Mean,Mean: GRU - FF,80,43,2,35,Descriptive only. The cross-instance inference unit is target day.
+GRU_minus_FF_CVaR,CVaR: GRU - FF,80,39,1,40,Descriptive only. The cross-instance inference unit is target day.

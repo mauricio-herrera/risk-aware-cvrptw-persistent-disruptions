@@ -1,0 +1,38 @@
+==============================================================================
+R4-E2 ZERO-SHOT RL TRANSFER
+TARGET DAY 4 — SOURCE CHECKPOINT 08
+==============================================================================
+target training       : NONE
+target validation     : NONE
+target weight updates : NONE
+initial distance      : 419.200000
+TW scale              : 180.000000
+search bank seed      : 20400801
+test bank seed        : 20400802
+Running RL-FF-Mean...
+Running RL-GRU-Mean...
+Running Uniform-Mean...
+Running RL-FF-CVaR...
+Running RL-GRU-CVaR...
+Running Uniform-CVaR...
+Search-budget gates   : PASS
+Weight-immutability   : PASS
+
+      method  distance_km  tard_mean  tard_cvar95  on_time_mean  J_aligned
+  RL-FF-Mean        419.7   9.196999    37.072156      0.981058 438.093997
+ RL-GRU-Mean        419.0   8.627606    34.055455      0.982116 436.255213
+Uniform-Mean        426.1   2.596627    18.735729      0.993667 431.293254
+  RL-FF-CVaR        427.3   2.439283    19.973202      0.993942 467.246404
+ RL-GRU-CVaR        427.7   1.929448    15.142009      0.994507 457.984018
+Uniform-CVaR        439.0   0.673838     9.280856      0.997203 457.561713
+
+FF_Mean_RL_minus_Uniform        : +6.800743
+GRU_Mean_RL_minus_Uniform       : +4.961959
+FF_CVaR_RL_minus_Uniform        : +9.684692
+GRU_CVaR_RL_minus_Uniform       : +0.422305
+GRU_minus_FF_Mean               : -1.838785
+GRU_minus_FF_CVaR               : -9.262386
+
+==============================================================================
+R4-E2 DAY 4 SOURCE 08: PASS
+==============================================================================

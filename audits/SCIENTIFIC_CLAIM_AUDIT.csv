@@ -1,0 +1,19 @@
+claim,frozen_source,expected_or_observed,status
+Hawkes disruption process is exogenous,Frozen model specification,exogenous; no route-to-Hawkes feedback,PASS
+OMI is a common environmental state,Frozen model specification,shared environment; route-specific sampling times only,PASS
+CVaR confidence level,Frozen risk specification,alpha=0.95,PASS
+ALNS baseline is genuinely adaptive,R3/R4 confirmatory protocol,adaptive operator mechanism,PASS
+Persistence environmental sample size,R4D,10000 trajectories per regime,PASS
+OR-Tools tail tardiness eta 0 to 0.70,R4D,60.741 -> 113.244,PASS
+Nine-day aligned-objective gain,R4E1,mean 8.611341; 9/9 positive,PASS
+Nine-day tail-tardiness gain,R4E1,mean 7.276041; 9/9 positive,PASS
+RL incremental advantage,R3/R4E2,no robust advantage under matched online budgets; none of four zero-shot learned-vs-uniform contrasts survives Holm,PASS
+Zero-shot structural audit,R4E2,"80/80 reports: budget pass, weights unchanged, no target train/validation/updates",PASS
+DDDAS causal information set,R5-H,observed prefix/completed travel times only; affected unexecuted suffix only,PASS
+DDDAS attempts and changes,R5-H,523 attempts; 87 route changes,PASS
+DDDAS decision caps,R5-H,194 cap terminations; only 3 capped searches change route,PASS
+DDDAS conditional local gains,R5-H,87/87 executed changes positive conditional gain,PASS
+DDDAS changed-run realized outcomes,R5-H,18 improve / 3 tie / 44 worsen among 65 changed runs; tie tol=1e-12,PASS
+DDDAS suffix location,R5-H,19 immediate-next-customer changes / 68 later-suffix-only changes,PASS
+Primary evaluation unit,R4E1,nine operational days; day is inferential unit,PASS
+Athens coordinates,Geographic integrity constraint,none invented; no geographic route map generated,PASS

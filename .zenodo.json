@@ -1,0 +1,33 @@
+{
+  "title": "Risk-Aware Last-Mile Routing under Persistent Disruptions: Reproducibility Package",
+  "description": "Frozen confirmatory outputs, manuscript and supplementary sources, publication figures, figure-generation scripts, scientific audits, and computational provenance supporting the major revision of manuscript TRIP-D-26-00192.",
+  "creators": [
+    {
+      "name": "Herrera-Marín, Mauricio",
+      "affiliation": "Universidad del Desarrollo"
+    }
+  ],
+  "upload_type": "software",
+  "version": "1.0.0",
+  "access_right": "open",
+  "license": "mit",
+  "language": "eng",
+  "keywords": [
+    "CVRPTW",
+    "CVaR",
+    "persistent disruptions",
+    "Hawkes process",
+    "adaptive large neighbourhood search",
+    "reinforcement learning",
+    "DDDAS",
+    "last-mile logistics",
+    "reproducibility"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "10.1016/j.dib.2025.111762",
+      "relation": "isDerivedFrom",
+      "resource_type": "publication-article"
+    }
+  ]
+}

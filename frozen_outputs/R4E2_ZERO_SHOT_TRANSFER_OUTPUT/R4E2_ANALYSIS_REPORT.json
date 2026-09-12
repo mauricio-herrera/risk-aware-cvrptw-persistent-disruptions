@@ -1,0 +1,32 @@
+{
+  "stage": "R4-E2 zero-shot RL cross-day aggregate analysis",
+  "source_training_day": 1,
+  "target_days": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "source_checkpoints_per_target": 10,
+  "raw_transfer_units": 80,
+  "raw_method_rows": 480,
+  "target_training": false,
+  "target_validation": false,
+  "target_checkpoint_selection": false,
+  "target_gradient_updates": false,
+  "weights_immutability_gate": true,
+  "search_budget_gate": true,
+  "contrast_reconstruction_pass": true,
+  "max_contrast_reconstruction_error": 1.1368683772161603e-13,
+  "crossday_inference_unit": "target day",
+  "crossday_n": 8,
+  "bootstrap_B": 100000,
+  "bootstrap_seed": 20260905,
+  "multiplicity": "Holm adjustment across four co-primary exact sign-flip tests.",
+  "primary_direction": "Negative RL-Uniform contrast favors learned RL.",
+  "overall_pass": true
+}

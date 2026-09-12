@@ -1,0 +1,25 @@
+{
+  "stage": "R4-E2 zero-shot RL transfer",
+  "target_day": 8,
+  "source_replicate": 8,
+  "source_training_day": 1,
+  "target_training": false,
+  "target_validation": false,
+  "target_checkpoint_selection": false,
+  "target_gradient_updates": false,
+  "all_learned_weights_unchanged": true,
+  "search_budget_pass": true,
+  "seeds": {
+    "search_bank": 20800801,
+    "test_bank": 20800802,
+    "search_mean": 20800811,
+    "search_cvar": 20800812
+  },
+  "model_paths": {
+    "RL-FF-Mean": "R3_REWARDFIX_VAL5_OUTPUT/replicate_08/models/RL-FF-Mean.pt",
+    "RL-GRU-Mean": "R3_REWARDFIX_VAL5_OUTPUT/replicate_08/models/RL-GRU-Mean.pt",
+    "RL-FF-CVaR": "R3_REWARDFIX_VAL5_OUTPUT/replicate_08/models/RL-FF-CVaR.pt",
+    "RL-GRU-CVaR": "R3_REWARDFIX_VAL5_OUTPUT/replicate_08/models/RL-GRU-CVaR.pt"
+  },
+  "overall_pass": true
+}

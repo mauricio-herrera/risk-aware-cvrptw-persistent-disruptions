@@ -1,0 +1,31 @@
+{
+  "stage": "R4-D confirmatory multiseed",
+  "replicate": 3,
+  "day": 1,
+  "etas": [
+    0.0,
+    0.35,
+    0.7
+  ],
+  "n_search": 100,
+  "n_test": 1000,
+  "alpha": 0.95,
+  "search_evaluated_candidates": 250,
+  "expected_search_scenario_evals": 25100,
+  "seeds": {
+    "search": 243001,
+    "test": 244001,
+    "alns_mean": 252001,
+    "alns_cvar": 253001
+  },
+  "kappa_map": {
+    "0.00": 0.6952662379115702,
+    "0.35": 0.9,
+    "0.70": 1.481574841841101
+  },
+  "crn_search_pass": true,
+  "crn_test_pass": true,
+  "rep01_regression_pass": true,
+  "rep01_regression_failures": [],
+  "overall_pass": true
+}

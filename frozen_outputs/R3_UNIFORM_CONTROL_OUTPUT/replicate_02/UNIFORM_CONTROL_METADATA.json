@@ -1,0 +1,33 @@
+{
+  "stage": "R3 Day-1 Uniform-Policy control",
+  "replicate": 2,
+  "operator_probabilities": [
+    0.3333333333333333,
+    0.3333333333333333,
+    0.3333333333333333
+  ],
+  "state_dependent": false,
+  "training": false,
+  "checkpoint_selection": false,
+  "search_engine": "frozen run_policy_search from run_r3_rewardfix_val5_FROZEN_R3.py",
+  "search_evaluated_candidates": 250,
+  "expected_search_scenario_evals": 25100,
+  "paired_controls": {
+    "Uniform-Mean-FFseed": "RL-FF-Mean",
+    "Uniform-CVaR-FFseed": "RL-FF-CVaR",
+    "Uniform-Mean-GRUseed": "RL-GRU-Mean",
+    "Uniform-CVaR-GRUseed": "RL-GRU-CVaR"
+  },
+  "search_seeds": {
+    "Uniform-Mean-FFseed": 156001,
+    "Uniform-CVaR-FFseed": 156002,
+    "Uniform-Mean-GRUseed": 156003,
+    "Uniform-CVaR-GRUseed": 156004
+  },
+  "scenario_bank_seeds": {
+    "train": 41001,
+    "validation": 42001,
+    "search": 43001,
+    "test": 44001
+  }
+}

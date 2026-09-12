@@ -1,0 +1,27 @@
+========================================================================
+R4-E1 NOMINAL CROSS-DAY BENCHMARK
+DAY 9 — REPLICATE 2
+========================================================================
+customers       : 84
+horizon         : 537.818160
+search seed     : 8243001
+test seed       : 8244001
+ALNS-Mean seed  : 8252001
+ALNS-CVaR seed  : 8253001
+expected budget : 25100
+
+Running ALNS-Mean...
+Running ALNS-CVaR...
+Search-budget gate: PASS
+
+   method  distance_km  tard_mean  tard_cvar95  on_time_mean  J_mean_test  J_cvar_test
+ OR-Tools        431.3  17.304989    61.300838      0.967786   465.909978   553.901675
+ALNS-Mean        428.2   5.935494    36.042187      0.982488   440.070989   500.284374
+ALNS-CVaR        438.3   1.270766    15.342197      0.996774   440.841532   468.984394
+
+J_CVaR gain Mean-CVaR: +31.299981
+Tail gain Mean-CVaR  : +20.699990
+
+========================================================================
+R4-E1 DAY 9 REP 2: PASS
+========================================================================

@@ -1,0 +1,53 @@
+================================================
+R4-D CONFIRMATORY MULTISEED
+REPLICATE 10
+================================================
+search seed      : 943001
+test seed        : 944001
+ALNS-Mean seed   : 952001
+ALNS-CVaR seed   : 953001
+search budget    : 25100
+
+------------------------------------------------
+ETA = 0.00
+------------------------------------------------
+mu=0.015384615385 beta=0.600 eta=0.00 kappa=0.695266237912
+Running ALNS-Mean...
+Running ALNS-CVaR...
+Search-budget gate: PASS
+
+------------------------------------------------
+ETA = 0.35
+------------------------------------------------
+mu=0.010000000000 beta=0.600 eta=0.35 kappa=0.900000000000
+Running ALNS-Mean...
+Running ALNS-CVaR...
+Search-budget gate: PASS
+
+------------------------------------------------
+ETA = 0.70
+------------------------------------------------
+mu=0.004615384615 beta=0.600 eta=0.70 kappa=1.481574841841
+Running ALNS-Mean...
+Running ALNS-CVaR...
+Search-budget gate: PASS
+
+[STRUCTURAL] PERT CRN
+Search bank: PASS
+Test bank  : PASS
+
+CONTRASTS
+C1_OR_CVaR_eta70_minus_eta0           : +50.976081
+OR_mean_eta70_minus_eta0              : +3.463200
+G_eta0                                : -5.397930
+G_eta035                              : +37.744473
+G_eta070                              : +76.885307
+C2_interaction_G70_minus_G0           : +82.283237
+tail_gain_eta0                        : -0.548965
+tail_gain_eta035                      : +21.872237
+tail_gain_eta070                      : +43.692653
+tail_gain_interaction_70_minus_0      : +44.241619
+
+================================================
+R4-D REPLICATE 10: PASS
+================================================

@@ -1,0 +1,2 @@
+target_day,source_replicate,FF_Mean_RL_minus_Uniform,GRU_Mean_RL_minus_Uniform,FF_CVaR_RL_minus_Uniform,GRU_CVaR_RL_minus_Uniform,GRU_minus_FF_Mean,GRU_minus_FF_CVaR
+3,7,3.8234669299373536,2.9044289003837207,-16.26547529996492,-15.13972567720117,-0.9190380295536329,1.125749622763749

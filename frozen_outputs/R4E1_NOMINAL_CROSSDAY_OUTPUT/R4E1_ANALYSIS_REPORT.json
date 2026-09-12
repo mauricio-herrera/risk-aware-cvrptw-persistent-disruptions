@@ -1,0 +1,28 @@
+{
+  "stage": "R4-E1 nominal cross-day aggregate analysis",
+  "days": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "replicates_per_day": 3,
+  "raw_method_rows": 81,
+  "crossday_inference_unit": "day",
+  "crossday_n": 9,
+  "bootstrap_B": 100000,
+  "bootstrap_seed": 20260905,
+  "primary_contrast": "Day-level mean across 3 replicates of J_CVaR(ALNS-Mean) - J_CVaR(ALNS-CVaR).",
+  "secondary_contrast": "Day-level mean across 3 replicates of tardiness CVaR95(ALNS-Mean) - tardiness CVaR95(ALNS-CVaR).",
+  "structural_gate": true,
+  "frozen_initial_route_gate": true,
+  "budget_gate": true,
+  "contrast_reconstruction_pass": true,
+  "max_contrast_reconstruction_error": 6.039613253960852e-14,
+  "overall_pass": true
+}

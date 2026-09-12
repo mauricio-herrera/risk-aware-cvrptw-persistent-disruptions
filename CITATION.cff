@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use this reproducibility package, please cite this software release."
+title: "Risk-Aware Last-Mile Routing under Persistent Disruptions: Reproducibility Package"
+type: software
+authors:
+  - family-names: "Herrera-Marín"
+    given-names: "Mauricio"
+    affiliation: "Universidad del Desarrollo"
+version: 1.0.0
+date-released: 2026-09-12
+repository-code: "https://github.com/mauricio-herrera/risk-aware-cvrptw-persistent-disruptions"
+license: MIT
+keywords:
+  - CVRPTW
+  - CVaR
+  - Hawkes processes
+  - adaptive large neighbourhood search
+  - reinforcement learning
+  - DDDAS
+  - last-mile logistics

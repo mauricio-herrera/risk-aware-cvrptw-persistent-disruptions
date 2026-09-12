@@ -1,0 +1,3213 @@
+%% 
+%% Copyright 2007-2024 Elsevier Ltd
+%% 
+%% This file is part of the 'Elsarticle Bundle'.
+%% ---------------------------------------------
+%% 
+%% It may be distributed under the conditions of the LaTeX Project Public
+%% License, either version 1.3 of this license or (at your option) any
+%% later version.  The latest version of this license is in
+%%    http://www.latex-project.org/lppl.txt
+%% and version 1.3 or later is part of all distributions of LaTeX
+%% version 1999/12/01 or later.
+%% 
+%% The list of all files belonging to the 'Elsarticle Bundle' is
+%% given in the file `manifest.txt'.
+%% 
+%% Template article for Elsevier's document class `elsarticle'
+%% with numbered style bibliographic references
+%% SP 2008/03/01
+%% $Id: elsarticle-template-num.tex 249 2024-04-06 10:51:24Z rishi $
+%%
+%\documentclass[preprint,12pt]{elsarticle}
+\documentclass[preprint,12pt]{elsarticle}
+%\documentclass[preprint,authoryear,12pt, times,3p]{elsarticle}
+\biboptions{authoryear}
+
+%% Use the option review to obtain double line spacing
+% \documentclass[authoryear,preprint,review,12pt]{elsarticle}
+
+%% Use the options 1p,twocolumn; 3p; 3p,twocolumn; 5p; or 5p,twocolumn
+%% for a journal layout:
+% \documentclass[final,1p,times]{elsarticle}
+%% \documentclass[final,1p,times,twocolumn]{elsarticle}
+% \documentclass[final,3p,times]{elsarticle}
+%% \documentclass[final,3p,times,twocolumn]{elsarticle}
+% \documentclass[final,5p,times]{elsarticle}
+%% \documentclass[final,5p,times,twocolumn]{elsarticle}
+
+%% For including figures, graphicx.sty has been loaded in
+%% elsarticle.cls. If you prefer to use the old commands
+%% please give \usepackage{epsfig}
+
+%% The amssymb package provides various useful mathematical symbols
+\usepackage{amssymb}
+%% The amsmath package provides various useful equation environments.
+\usepackage{amsmath}
+%% The amsthm package provides extended theorem environments
+%% \usepackage{amsthm}
+\usepackage{algorithm}
+\usepackage{algpseudocode} % from algorithmicx
+\usepackage{booktabs}
+\usepackage{graphicx} % para \resizebox
+\usepackage{threeparttable} % para notas bajo la tabla (opcional pero recomendado)
+
+\usepackage{url} % habilita \url{...}
+% opcional (recomendado):
+\usepackage[hidelinks]{hyperref}
+
+\usepackage{comment}
+\setlength{\emergencystretch}{2em}
+
+
+
+
+% ---------------- Theorems ----------------
+\newtheorem{definition}{Definition}
+\newtheorem{assumption}{Assumption}
+\newtheorem{proposition}{Proposition}
+
+% ---------------- Macros ----------------
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\Prob}{\mathbb{P}}
+\newcommand{\CVaR}{\mathrm{CVaR}}
+\newcommand{\VaR}{\mathrm{VaR}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\1}{\mathbf{1}}
+
+
+%% The lineno packages adds line numbers. Start line numbering with
+%% \begin{linenumbers}, end it with \end{linenumbers}. Or switch it on
+%% for the whole article with \linenumbers.
+%% \usepackage{lineno}
+
+
+
+\journal{Transportation Research Interdisciplinary Perspectives}
+
+\begin{document}
+
+\begin{frontmatter}
+
+%% Title, authors and addresses
+
+%% use the tnoteref command within \title for footnotes;
+%% use the tnotetext command for theassociated footnote;
+%% use the fnref command within \author or \affiliation for footnotes;
+%% use the fntext command for theassociated footnote;
+%% use the corref command within \author for corresponding author footnotes;
+%% use the cortext command for theassociated footnote;
+%% use the ead command for the email address,
+%% and the form \ead[url] for the home page:
+%% \title{Title\tnoteref{label1}}
+%% \tnotetext[label1]{}
+%% \author{Name\corref{cor1}\fnref{label2}}
+%% \ead{email address}
+%% \ead[url]{home page}
+%% \fntext[label2]{}
+%% \cortext[cor1]{}
+%% \affiliation{organization={},
+%%             addressline={},
+%%             city={},
+%%             postcode={},
+%%             state={},
+%%             country={}}
+%% \fntext[label3]{}
+
+
+\title{Risk-Aware Last-Mile Routing under Persistent Disruptions:
+	Tail-Risk Planning and Selective Dynamic Recourse}
+
+
+
+%CVaR-Guided Reinforcement Learning for Reliable Vehicle Routing under Realistic Travel-Time Distributions
+%% use optional labels to link authors explicitly to addresses:
+%% \author[label1,label2]{}
+%% \affiliation[label1]{organization={},
+%%             addressline={},
+%%             city={},
+%%             postcode={},
+%%             state={},
+%%             country={}}
+%%
+%% \affiliation[label2]{organization={},
+%%             addressline={},
+%%             city={},
+%%             postcode={},
+%%             state={},
+%%             country={}}
+
+%\author{} %% Author name
+
+%% Author affiliation
+%\affiliation{organization={},%Department and Organization
+ %           addressline={}, 
+ %           city={},
+ %           postcode={}, 
+ %           state={},
+ %           country={}}
+
+
+%% Author and affiliation
+\author[1]{Mauricio Herrera-Mar\'in\corref{cor1}}
+\ead{mherrera@udd.cl}
+
+\cortext[cor1]{Corresponding author.}
+
+\affiliation[1]{%
+	organization={Faculty of Engineering, Universidad del Desarrollo},
+	addressline={Avd. Plaza 680},
+	city={Santiago},
+	postcode={7550000},
+	country={Chile}
+}
+
+
+
+
+\begin{abstract}
+	
+	Last-mile delivery systems are increasingly exposed to disruptions that are
+	temporally persistent rather than independent across time. We study a stochastic
+	capacitated vehicle routing problem with time windows (CVRPTW) in which an
+	exogenous Hawkes process represents clustered disruptions, while route-dependent
+	schedule propagation determines how those disruptions translate into service
+	delay. The framework combines risk-aware Adaptive Large Neighbourhood Search
+	(ALNS), learning-augmented operator selection, and causal Dynamic Data-Driven
+	Application Systems (DDDAS) recourse. Experiments use nine Athens-derived
+	operational instances under controlled stress scenarios, with common random
+	numbers and matched stochastic search budgets.
+	
+	Increasing disruption persistence substantially raises upper-tail tardiness
+	even when the continuous-time mean environmental travel-time multiplier is held
+	approximately constant: for an unchanged benchmark route,
+	$\CVaR_{0.95}$ tardiness increases from $60.74$ to $113.24$ between the
+	low- and high-persistence regimes. The strongest algorithmic result is obtained
+	from explicit tail-risk optimization. Across all nine operational days,
+	CVaR-oriented ALNS improves the aligned tail-risk objective relative to
+	mean-oriented ALNS by $8.61$ on average and reduces
+	$\CVaR_{0.95}$ tardiness by $7.28$, with positive paired gains on all nine
+	days. By contrast, feed-forward and recurrent reinforcement-learning operator
+	selectors show no robust advantage over adaptive ALNS or a uniform-selection
+	control under matched online budgets and zero-shot transfer.
+	
+	Sequential DDDAS recourse is selective rather than uniformly beneficial.
+	Among 523 recourse attempts, 87 produce route modifications; all improve the
+	local conditional risk objective at decision time, yet realized composite cost
+	improves in only 18 of the 65 runs containing a route change. These results
+	distinguish persistent environmental risk, ex-ante tail-aware planning, and
+	ex-post adaptive recourse, and indicate that the most reproducible gains arise
+	from explicit CVaR-based preoperational routing rather than from additional
+	learning or continual rerouting.
+	
+\end{abstract}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%%Graphical abstract
+%\begin{graphicalabstract}
+%\includegraphics{grabs}
+%\end{graphicalabstract}
+
+%%Research highlights
+%\begin{highlights}
+%	\item We develop a unified OR–ML framework for robust VRPTW integrating OR-Tools, ALNS, reinforcement learning and CVaR optimisation.
+%	\item Realistic travel-time uncertainty is modelled using PERT and triangular distributions calibrated from multi-scenario field data.
+%	\item Risk-neutral RL--ALNS improves expected performance but remains vulnerable to congestion spikes and heavy-tailed uncertainty.
+%	\item The proposed RL--CVaR method reduces 95\%-CVaR of tardiness by one to two orders of magnitude with minimal increase in travel distance.
+%	\item Results demonstrate that risk-sensitive operator learning yields reliable and interpretable routing policies for last-mile logistics.
+%\end{highlights}
+
+%% Keywords
+%\begin{keyword}
+%% keywords here, in the form: keyword \sep keyword
+
+%% PACS codes here, in the form: \PACS code \sep code
+
+%% MSC codes here, in the form: \MSC code \sep code
+%% or \MSC[2008] code \sep code (2000 is the default)
+
+%\end{keyword}
+
+
+\begin{keyword}
+	Last-mile logistics \sep
+	CVRPTW \sep
+	Persistent disruptions \sep
+	Conditional Value-at-Risk \sep
+	Hawkes processes \sep
+	Adaptive large neighbourhood search \sep
+	Dynamic routing
+\end{keyword}
+
+\end{frontmatter}
+
+%% Add \usepackage{lineno} before \begin{document} and uncomment 
+%% following line to enable line numbers
+%% \linenumbers
+
+%% main text
+%%
+
+\section{Introduction}
+
+Urban last-mile logistics increasingly operate in regimes where service reliability
+is dominated not by average conditions, but by rare yet persistent disruptions that
+propagate through tightly coupled delivery schedules.
+Congestion waves, local incidents, and the depletion of schedule slack interact over time,
+producing delay cascades whose impact may far exceed that predicted by classical
+memoryless uncertainty models.
+Travel-time conditions in urban routing can vary systematically over time, and recent
+reviews of time-dependent and stochastic dynamic routing emphasize that temporal structure,
+information arrival, and real-time reoptimization materially affect route quality
+\citep{Ritzinger2016, ZhangVanWoensel2023, Adamo2024, Mardesic2024}.
+In such environments, routing plans that are optimal---or even robust---under static or
+weakly stochastic assumptions may exhibit substantial fragility once executed
+sequentially over time.
+
+The Capacitated Vehicle Routing Problem with Time Windows (CVRPTW) is a cornerstone of
+transportation science and operations research, with more than five decades of
+methodological development
+\citep{Solomon1987, TothVigo2002, Laporte2009}.
+State-of-the-art exact, heuristic, and metaheuristic approaches---most notably Large
+Neighbourhood Search (LNS) and Adaptive Large Neighbourhood Search (ALNS)---are capable of
+producing high-quality solutions for large-scale deterministic instances
+\citep{BraysyGendreau2005, Ropke2006ALNS, Christiaens2020SurveyVRPTW}.
+Modern industrial solvers such as Google OR-Tools further illustrate the practical
+scalability of deterministic vehicle-routing optimization under nominal travel-time
+assumptions \citep{ortools2023}.
+In their standard deterministic use, however, such formulations do not explicitly
+represent temporal persistence in the disruption process or the resulting exposure of a
+route to clustered periods of degraded travel conditions.
+
+A substantial literature has demonstrated that ignoring travel-time uncertainty can lead
+to considerable degradation of operational performance.
+Stochastic, robust, and distributionally robust routing formulations address this problem
+through scenario-based, probabilistic, or ambiguity-set representations of uncertainty
+\citep{Ritzinger2016, ZhangEtAl2021DRODeadlines, Mardesic2024}.
+Risk-sensitive criteria provide an additional mechanism for controlling service
+unreliability.
+In particular, Conditional Value-at-Risk (CVaR) offers a coherent way to target the upper
+tail of tardiness rather than optimizing expected performance alone
+\citep{RockafellarUryasev2000}.
+Yet temporal dependence and persistence remain less developed than marginal travel-time
+uncertainty itself: scenario-based formulations can represent heterogeneous and even
+correlated outcomes without necessarily describing how disruption episodes cluster,
+decay, and become observable during sequential route execution.
+
+In parallel, learning-augmented optimization has gained prominence in vehicle routing.
+Reinforcement learning (RL) has been applied to end-to-end route construction
+\citep{Nazari2018RL, Kool2019Attention}, while recent surveys document a broader shift toward
+learning-augmented routing and hybrid combinations of learned policies with classical
+optimization or improvement heuristics
+\citep{Bogyrbayeva2024MLVRP, ZhouEtAl2025LearningRouting, WangEtAl2025RLALNS}.
+These hybrid approaches are attractive because learning can guide expensive search
+decisions while combinatorial operators preserve the structural constraints of the
+routing problem.
+However, an important question remains insufficiently resolved: whether learned operator
+selection provides an operational advantage once search effort, stochastic evaluation
+budget, offline training cost, and generalization to unseen instances are controlled.
+This question becomes particularly relevant when the optimization criterion is not mean
+performance but tail risk, and when the state available to a routing policy evolves with
+the observed disruption history.
+
+From a systems perspective, two distinct temporal mechanisms must be separated.
+First, disruption conditions may themselves exhibit \emph{exogenous persistence}: recent
+events contain information about the likelihood of further events even though routing
+decisions do not alter the disruption-generating process.
+Second, delays propagate \emph{through the delivery schedule}: a slow arc changes later
+departure times, consumes time-window slack, and can transform subsequent travel-time
+realizations into tardiness.
+The second mechanism can therefore amplify the operational consequences of the first
+without generating feedback from the route to the disruption process.
+This distinction is important because a route may be exposed to the same external
+disruption environment as another route while experiencing different consequences simply
+because its arc departures occur at different times.
+
+We represent the first mechanism using an exogenous self-exciting Hawkes process
+\citep{hawkes1971, bacry2015hawkes}.
+Recent disruption events generate a decaying excitation state, which is mapped to an
+\emph{Operational Memory Index} (OMI) and then to a multiplicative travel-time effect.
+The Hawkes process is common to the operating environment and is not affected by realized
+routing delays.
+For the exponential kernel used here, the excitation admits a finite-dimensional Markov
+representation; accordingly, the system is history-dependent relative to a conventional
+routing state that omits this excitation variable, but it becomes Markovian once the
+environmental memory state is included.
+Route dependence then arises because different routing decisions induce different
+departure times and hence different exposure to the same evolving OMI trajectory.
+
+Against this background, the present study asks three related but distinct questions.
+First, how does disruption persistence affect mean and tail routing risk when differences
+in average environmental impact are controlled?
+Second, does explicitly optimizing tail risk through CVaR provide a reproducible advantage
+over mean-risk optimization under a common stochastic evaluation protocol?
+Third, once a risk-aware preoperational route is available, how much additional value is
+provided by causal online recourse based only on information observed up to each decision
+epoch?
+A complementary learning experiment asks whether feed-forward or recurrent RL-based
+operator selection improves upon the underlying adaptive search once computational
+budgets and generalization are controlled.
+
+To address these questions, we formulate a stochastic CVRPTW with two-dimensional vehicle
+capacity and a common risk-sensitive objective,
+\[
+J_{\rho}(x)
+=
+\lambda_D D(x)
++
+\lambda_T \rho(Z_x)
++
+\lambda_W O_W(x)
++
+\lambda_V O_V(x),
+\]
+where $D(x)$ denotes route distance, $Z_x$ is cumulative tardiness under stochastic
+execution, $O_W(x)$ and $O_V(x)$ denote weight and volume capacity violations, and
+$\rho$ is either the mean or $\operatorname{CVaR}_{\alpha}$.
+The same objective structure is used across the principal search and learning
+comparisons.
+We implement a genuine adaptive ALNS and compare mean-oriented and CVaR-oriented search
+under common random numbers and matched candidate--scenario evaluation budgets.
+Feed-forward and gated recurrent unit (GRU) policies are evaluated as learned
+destroy--repair operator selectors rather than as replacements for the combinatorial
+solver.
+
+The framework is then extended to sequential operation through a Dynamic Data-Driven
+Application Systems (DDDAS) recourse layer.
+At each eligible decision epoch, only the disruption events and travel-time information
+observed before departure are available.
+When the OMI enters a prospectively specified high-memory episode, the system may
+reconsider the residual route of the affected vehicle.
+Future disruption events are generated conditionally from the observed Hawkes state,
+already traversed arcs retain their observed travel times, and unobserved travel times
+remain stochastic.
+The resulting recourse problem is therefore causal and local to the residual vehicle
+suffix.
+Online search is explicitly bounded, so a disruption trigger should be interpreted as a
+request to \emph{reconsider} the incumbent route rather than as an instruction to reroute.
+
+The empirical analysis uses multi-day last-mile delivery instances derived from real
+operations in Athens, Greece \citep{Vrani2025DataInBrief}.
+The operational data provide the customer, demand, spatial, and travel-time structure of
+the routing instances, while moderately tightened time windows and the Hawkes disruption
+process define controlled stress scenarios used to expose reliability differences among
+methods.
+The disruption process should therefore be interpreted as an experimental persistence
+model rather than as a Hawkes process calibrated from observed Athens incident arrivals.
+Nine operational days are used for the principal cross-instance evaluation, and three
+prospectively selected representative days are examined more deeply for sequential
+DDDAS behavior.
+
+The experiments reveal a differentiated picture.
+Increasing disruption persistence substantially increases tail tardiness risk even under
+an auxiliary control that matches the continuous-time mean environmental travel-time
+multiplier across persistence regimes.
+At the planning stage, CVaR-oriented ALNS consistently improves the tail-oriented
+objective relative to mean-oriented ALNS across all nine operational days, indicating
+that explicit tail-risk optimization provides a reproducible benefit beyond optimizing
+expected tardiness alone.
+By contrast, neither feed-forward nor recurrent learned operator selection exhibits a
+robust advantage over the adaptive search or a uniform operator-selection control once
+search budgets, validation, and transfer to other days are considered.
+Thus, recurrent state augmentation is not assumed to be beneficial merely because the
+environment contains temporal persistence.
+
+The sequential DDDAS experiments provide a further distinction between
+\emph{decision-time conditional risk} and \emph{realized ex-post performance}.
+Across the confirmatory sequential experiment, recourse was triggered frequently but
+actual route modification was selective.
+Every executed route modification improved the local conditional search objective relative
+to its incumbent residual route, yet these ex-ante conditional improvements did not
+translate systematically into lower realized composite cost on the subsequently observed
+trajectory.
+The online mechanism is therefore best interpreted as bounded, state-dependent recourse
+under uncertainty rather than as a guaranteed realized-cost improvement procedure.
+This result also illustrates why evaluating an online risk-sensitive controller solely by
+the realized outcome of a single stochastic trajectory can obscure the distinction between
+the objective optimized when the decision is made and the realization that subsequently
+occurs.
+
+The contributions of this work are fourfold.
+\begin{enumerate}
+	\item We develop a persistent-disruption formulation of the stochastic CVRPTW that
+	explicitly separates an exogenous Hawkes disruption process from route-dependent
+	schedule propagation and exposure.
+	
+	\item We provide a controlled assessment of temporal persistence and tail risk,
+	including a mean-impact-matched experiment that isolates changes in disruption
+	clustering from changes in average environmental travel-time impact.
+	
+	\item We establish a common-budget comparison of mean-oriented ALNS, CVaR-oriented
+	ALNS, and learning-augmented operator-selection policies, including feed-forward and
+	recurrent alternatives and zero-shot transfer across operational days.
+	
+	\item We implement and evaluate a causal, computationally bounded DDDAS recourse
+	mechanism in which decisions depend only on information available at the decision
+	epoch, thereby quantifying both the potential and the limitations of online
+	risk-sensitive adaptation.
+\end{enumerate}
+
+Taken together, the results suggest that resilience under persistent disruption should not
+be identified with a single algorithmic mechanism.
+Explicit tail-risk optimization provides the clearest and most reproducible improvement
+at the preoperational planning stage, whereas learning-based search control and online
+recourse provide additional adaptive capabilities whose value depends on the information,
+computational budget, and realized trajectory.
+This separation between environmental persistence, risk-aware planning, and sequential
+recourse provides a more transparent basis for designing data-driven decision support for
+disruption-prone last-mile logistics.
+
+
+
+
+% ============================================================
+\section{Related Work}
+\label{sec:related_work}
+
+\subsection{Vehicle routing with time windows under uncertainty}
+
+The vehicle routing problem with time windows (VRPTW) has developed from the
+classical deterministic formulation of \citet{Solomon1987} into a broad family
+of stochastic, robust, time-dependent, and dynamic routing models
+\citep{TothVigo2002, Laporte2009, BraysyGendreau2005}.
+Recent reviews stress that uncertainty is not characterized only by its marginal
+magnitude: the timing of information, temporal variation of travel conditions,
+and the possibility of reoptimization are central modelling choices
+\citep{Ritzinger2016, ZhangVanWoensel2023, Mardesic2024, Adamo2024}.
+Our setting keeps the daily customer set fixed before dispatch, while a common
+exogenous disruption environment evolves during execution. Dynamic adaptation
+therefore enters through causal residual-route reconsideration, not through
+new customer arrivals.
+
+\subsection{Risk-averse routing and tail performance metrics}
+
+Expectation-based objectives can understate operational exposure when a small
+number of severe delays dominate service penalties. Risk-averse routing therefore
+uses chance constraints, robust or distributionally robust formulations, quantiles,
+and coherent tail-risk measures such as Conditional Value-at-Risk (CVaR)
+\citep{RockafellarUryasev2000}. Distributionally robust vehicle-routing models have,
+for example, used CVaR approximations to control deadline violations when the
+underlying distribution is uncertain \citep{ZhangEtAl2021DRODeadlines}.
+The contribution here is not CVaR itself, but a controlled test of whether explicit
+CVaR optimization remains beneficial when uncertainty is modulated by a persistent
+latent disruption state and when average environmental impact is held fixed.
+
+\subsection{Metaheuristics and adaptive large neighbourhood search}
+
+Adaptive Large Neighbourhood Search (ALNS) is a well-established framework for
+rich routing problems \citep{Ropke2006ALNS}. Its defining feature is adaptive
+operator selection based on observed search performance rather than a fixed
+neighbourhood schedule. A recent systematic review of 211 VRP studies provides a
+unified taxonomy of removal and insertion operators and reports strong performance
+for foresight-based insertions such as regret insertion \citep{Voigt2025ALNS}.
+ALNS also remains relevant in explicitly dynamic VRPTW variants; for example,
+\citet{WangSunHuang2024} develop an ALNS reoptimization framework for a multi-depot
+dynamic VRPTW. These results motivate using a genuinely adaptive ALNS as the main
+combinatorial benchmark here. Mean- and CVaR-oriented variants share the same
+adaptive machinery, neighbourhoods, and stochastic budget, isolating the optimized
+risk functional.
+
+\subsection{Learning-augmented routing and reinforcement learning}
+
+Learned methods now span end-to-end route construction and augmentation of
+classical search. Early policy-gradient and attention models demonstrated that
+neural policies can construct competitive routing solutions
+\citep{Nazari2018RL, Kool2019Attention}. A 2024 survey synthesizes machine-learning
+approaches to VRPs \citep{Bogyrbayeva2024MLVRP}, and a 2025 review organizes recent
+routing work into construction- and improvement-based learning paradigms
+\citep{ZhouEtAl2025LearningRouting}. Hybrid RL--ALNS methods continue to appear,
+including PPO-guided operator control for VRPTW \citep{WangEtAl2025RLALNS}.
+The present learning component follows this hybrid paradigm: feed-forward and
+recurrent policies select destroy operators, while feasibility, repair, stochastic
+scoring, and acceptance remain in the common ALNS engine. This permits an
+incremental test against both adaptive ALNS and uniform operator selection, with
+offline training cost reported separately from the matched online search budget.
+
+\subsection{Temporal dependence, self-excitation, and dynamic control}
+
+Time-dependent and stochastic dynamic routing already establish that route quality
+can depend strongly on when travel conditions change and when new information is
+available \citep{ZhangVanWoensel2023, Adamo2024}. Self-exciting point processes
+provide a complementary mechanism for representing event clustering. Hawkes'
+original construction \citep{hawkes1971} has since been used broadly for clustered
+event processes, and a recent transportation example models road accidents in Rome
+with a spatio-temporal Hawkes process \citep{AlaimoDiLoroEtAl2025}.
+Here the Hawkes process is deliberately an \emph{experimental exogenous disruption
+model}: it is not calibrated from Athens incident arrivals and routing decisions do
+not feed back into its intensity. Its excitation state determines a common
+Operational Memory Index (OMI), while different routes experience different exposure
+because they depart onto arcs at different times.
+
+Dynamic Data-Driven Application Systems (DDDAS) provide a natural systems concept
+for the execution stage because observations acquired during operation can update
+the state used for subsequent decisions \citep{Darema2004DDDAS}. In our
+implementation, this principle is causal and local: only events and completed travel
+times observed before a decision epoch condition the residual problem, and only the
+unexecuted suffix of the affected vehicle can be revised.
+
+\subsection{Positioning of this work}
+
+The gap addressed here lies at the intersection of these mature streams. We study a
+CVRPTW in which (i) disruption events exhibit explicit temporal persistence through
+an exogenous excitation state, (ii) persistence is separated from average
+environmental impact through matched controls, (iii) mean- and CVaR-oriented routing
+are compared using the same adaptive ALNS and common stochastic budgets, (iv)
+learned operator selection is evaluated as an incremental augmentation rather than
+assumed to dominate adaptive search, and (v) online adaptation is implemented as
+causal, bounded residual-route recourse. Accordingly, we do not claim that Hawkes
+processes uniquely represent urban disruption or that RL is intrinsically superior;
+the experiments identify which additional mechanisms are supported under the common
+confirmatory protocol.
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/main/pdf/Fig1_architecture_v3.pdf}
+\caption{\textbf{Conceptual architecture of persistent-risk routing.} The disruption process is exogenous to routing. Baseline OD uncertainty and the Hawkes-derived OMI jointly determine effective arc travel times, while route choices determine the departure times at which the common environmental state is sampled. Preoperational risk-aware planning is followed by sequential execution. The DDDAS layer uses only the observed disruption prefix and completed travel times to reconsider the unexecuted vehicle suffix; the revised suffix then returns to execution. No route-to-Hawkes feedback is assumed (crossed dashed arrow).}
+\label{fig:architecture}
+\end{figure*}
+
+\section{Problem Formulation}
+\label{sec:formulation}
+% ============================================================
+
+We consider a stochastic capacitated vehicle routing problem with soft time
+windows in which vehicles operate under an exogenous disruption environment with
+temporal persistence. The formulation separates three components that play
+different roles during execution: (i) baseline origin--destination travel-time
+uncertainty, (ii) an exogenous self-exciting disruption process, and
+(iii) route-dependent schedule propagation. Routing decisions affect when a
+vehicle is exposed to the evolving disruption state, but they do not affect the
+disruption-generating process itself.
+
+% ------------------------------------------------------------
+\subsection{Network, routes, demands, and capacity}
+% ------------------------------------------------------------
+
+Let $G=(V,A)$ be a directed graph with depot $0$ and customer set
+$\mathcal{C}=\{1,\ldots,n\}$, so that $V=\{0\}\cup\mathcal{C}$.
+The fleet is denoted by $\mathcal{K}=\{1,\ldots,K\}$.
+Each customer $i\in\mathcal{C}$ is characterized by a weight demand $w_i$,
+a volume demand $v_i$, a service duration $s_i$, and a service window
+$[a_i,b_i]$.
+
+The upper endpoint $b_i$ is treated as a service target rather than as a hard
+feasibility cutoff: vehicles may serve a customer after $b_i$, but the resulting
+tardiness is penalized. Early arrival is permitted and induces waiting until
+$a_i$.
+
+A routing solution can be represented either by binary arc variables
+$x_{ij}^k\in\{0,1\}$ or equivalently by a collection of vehicle routes
+\[
+x=\{r_1,\ldots,r_K\},
+\qquad
+r_k=(0,i_{k,1},\ldots,i_{k,n_k},0).
+\]
+Each customer is assigned to exactly one route.
+
+Let $Q^W_k$ and $Q^V_k$ denote the weight and volume capacities of vehicle $k$.
+The corresponding route loads are
+\[
+L^W_k(x)=\sum_{i\in r_k\cap\mathcal{C}} w_i,
+\qquad
+L^V_k(x)=\sum_{i\in r_k\cap\mathcal{C}} v_i.
+\]
+Capacity excesses are
+\begin{align}
+	O_W(x)
+	&=
+	\sum_{k\in\mathcal{K}}
+	\left[L^W_k(x)-Q^W_k\right]_+,
+	\\
+	O_V(x)
+	&=
+	\sum_{k\in\mathcal{K}}
+	\left[L^V_k(x)-Q^V_k\right]_+,
+\end{align}
+where $[z]_+=\max\{z,0\}$.
+The implemented destroy--repair search enforces both capacity dimensions when
+constructing admissible routes; consequently, these violation terms are zero for
+all reported feasible solutions and serve as safeguards in the canonical scoring
+function.
+
+The deterministic routing distance is
+\begin{equation}
+	D(x)
+	=
+	\sum_{k\in\mathcal{K}}
+	\sum_{\ell=0}^{n_k}
+	d_{i_{k,\ell},i_{k,\ell+1}},
+	\label{eq:distance}
+\end{equation}
+where $i_{k,0}=i_{k,n_k+1}=0$ and $d_{ij}$ is the observed OD distance.
+
+% ------------------------------------------------------------
+\subsection{Baseline travel-time uncertainty}
+\label{subsec:baseline_tt}
+% ------------------------------------------------------------
+
+For each OD pair $(i,j)$, the operational data provide optimistic,
+most-likely, and pessimistic travel-time estimates,
+\[
+t^{\mathrm{opt}}_{ij},
+\qquad
+t^{\mathrm{ml}}_{ij},
+\qquad
+t^{\mathrm{pes}}_{ij}.
+\]
+These triplets are retained unchanged in the source data. For stochastic
+sampling only, occasional ordering inconsistencies are regularized as
+\begin{equation}
+	L_{ij}
+	=
+	\min\left\{
+	t^{\mathrm{opt}}_{ij},
+	t^{\mathrm{ml}}_{ij},
+	t^{\mathrm{pes}}_{ij}
+	\right\},
+	\qquad
+	M_{ij}=t^{\mathrm{ml}}_{ij},
+	\qquad
+	U_{ij}
+	=
+	\max\left\{
+	t^{\mathrm{opt}}_{ij},
+	t^{\mathrm{ml}}_{ij},
+	t^{\mathrm{pes}}_{ij}
+	\right\}.
+	\label{eq:pert_regularization}
+\end{equation}
+
+The baseline stochastic travel time
+$B_{ij}^{(\omega)}$ is sampled from a modified PERT distribution on
+$[L_{ij},U_{ij}]$ with mode $M_{ij}$ and shape parameter $\lambda_{\mathrm{PERT}}=4$.
+For $U_{ij}>L_{ij}$, the corresponding beta-shape parameters are
+\begin{align}
+	a_{ij}
+	&=
+	1+
+	\lambda_{\mathrm{PERT}}
+	\frac{M_{ij}-L_{ij}}{U_{ij}-L_{ij}},
+	\\
+	b_{ij}
+	&=
+	1+
+	\lambda_{\mathrm{PERT}}
+	\frac{U_{ij}-M_{ij}}{U_{ij}-L_{ij}}.
+\end{align}
+Degenerate triplets with $L_{ij}=U_{ij}$ yield a deterministic baseline time.
+
+The regularization in Eq.~\eqref{eq:pert_regularization} is used only to define
+a valid stochastic sampling distribution; it does not modify the raw OD data.
+The nominal deterministic routing benchmark uses the corresponding nominal
+most-likely travel-time information rather than stochastic PERT draws.
+
+% ------------------------------------------------------------
+\subsection{Exogenous persistent disruption process}
+\label{subsec:hawkes}
+% ------------------------------------------------------------
+
+Temporal clustering of disruptions is represented by a univariate Hawkes
+process~\citep{hawkes1971,bacry2015hawkes}. Let
+$\{\tau_q\}_{q\ge1}$ denote disruption-event times. With an exponential kernel,
+the conditional event intensity is
+\begin{equation}
+	\lambda_H(t)
+	=
+	\mu
+	+
+	\xi
+	\sum_{\tau_q<t}
+	\exp\!\left[-\beta(t-\tau_q)\right],
+	\label{eq:hawkes_intensity}
+\end{equation}
+where $\mu>0$ is the baseline event rate, $\beta>0$ is the decay rate, and
+$\xi>0$ is the excitation amplitude.
+
+We parameterize the excitation amplitude as
+\begin{equation}
+	\xi=\eta\beta,
+	\qquad 0\leq\eta<1,
+	\label{eq:branching}
+\end{equation}
+so that $\eta=\xi/\beta$ is the Hawkes branching ratio.
+For constant $\mu$, the stationary mean event intensity is
+\begin{equation}
+	\bar{\lambda}
+	=
+	\frac{\mu}{1-\eta}.
+	\label{eq:hawkes_stationary_rate}
+\end{equation}
+
+Importantly, the Hawkes process is \emph{exogenous to routing}.
+The event process is generated independently of route choices, realized
+travel times, and realized tardiness. A delayed vehicle therefore does not
+increase future Hawkes intensity. The interaction between the route and the
+disruption process occurs only through the times at which the route samples
+the external disruption state.
+
+For the exponential kernel, define the excitation state
+\begin{equation}
+	m(t)
+	=
+	\xi
+	\sum_{\tau_q<t}
+	\exp\!\left[-\beta(t-\tau_q)\right].
+	\label{eq:memory_state}
+\end{equation}
+Between events, $m(t)$ decays exponentially, and at a disruption event it jumps
+by $\xi$. Hence the exponential Hawkes model admits a finite-dimensional Markov
+embedding through $m(t)$. The process is therefore history-dependent relative
+to a conventional routing state that omits this variable, but it is not
+intrinsically non-Markovian once the excitation state is included.
+
+% ------------------------------------------------------------
+\subsection{Operational Memory Index and route exposure}
+\label{subsec:omi}
+% ------------------------------------------------------------
+
+We summarize the instantaneous contribution of past events to the current
+disruption intensity through the Operational Memory Index (OMI),
+\begin{equation}
+	\mathrm{OMI}(t)
+	=
+	\frac{m(t)}
+	{\mu+m(t)}
+	\in[0,1].
+	\label{eq:omi}
+\end{equation}
+An OMI close to zero indicates that the current intensity is dominated by the
+baseline component $\mu$, whereas values close to one indicate that recent
+events dominate the instantaneous intensity.
+
+OMI is an \emph{environment-level} quantity: for a fixed Hawkes realization,
+the same function $\mathrm{OMI}(t)$ is available to every routing method.
+Methods do not suppress or modify OMI. They can, however, experience different
+\emph{route-dependent OMI exposure} because different routes depart on different
+arcs at different times.
+
+% ------------------------------------------------------------
+\subsection{Effective travel times and sequential execution}
+\label{subsec:execution}
+% ------------------------------------------------------------
+
+For scenario $\omega$, the effective travel time on arc $(i,j)$ when that arc
+is started at time $t$ is
+\begin{equation}
+	T_{ij}^{(\omega)}(t)
+	=
+	B_{ij}^{(\omega)}
+	\left[
+	1+\kappa\,\mathrm{OMI}^{(\omega)}(t)
+	\right],
+	\label{eq:effective_tt}
+\end{equation}
+where $\kappa\ge0$ controls the operational impact of the disruption state.
+
+Equation~\eqref{eq:effective_tt} defines exposure at \emph{arc departure}.
+Once an arc has been started, its travel-time multiplier is fixed; events that
+occur during traversal do not retrospectively modify that arc. They become
+observable only at a subsequent decision epoch.
+
+Consider route
+\[
+r_k=(0,i_1,\ldots,i_{n_k},0)
+\]
+under scenario $\omega$.
+Let $A_\ell^{(\omega)}$ denote arrival time at customer $i_\ell$,
+$S_\ell^{(\omega)}$ its service-start time, and
+$D_\ell^{(\omega)}$ the departure time after service.
+The execution recursion is
+\begin{align}
+	D_0^{(\omega)} &= 0,
+	\\
+	A_\ell^{(\omega)}
+	&=
+	D_{\ell-1}^{(\omega)}
+	+
+	T_{i_{\ell-1},i_\ell}^{(\omega)}
+	\!\left(D_{\ell-1}^{(\omega)}\right),
+	\\
+	S_\ell^{(\omega)}
+	&=
+	\max\left\{
+	A_\ell^{(\omega)},a_{i_\ell}
+	\right\},
+	\\
+	D_\ell^{(\omega)}
+	&=
+	S_\ell^{(\omega)}
+	+
+	s_{i_\ell},
+	\qquad
+	\ell=1,\ldots,n_k.
+	\label{eq:schedule_recursion}
+\end{align}
+
+Customer tardiness is measured at service start,
+\begin{equation}
+	Z_{i_\ell}^{(\omega)}(x)
+	=
+	\left[
+	S_\ell^{(\omega)}-b_{i_\ell}
+	\right]_+,
+	\label{eq:customer_tardiness}
+\end{equation}
+and total scenario tardiness is
+\begin{equation}
+	Z_x^{(\omega)}
+	=
+	\sum_{k\in\mathcal{K}}
+	\sum_{\ell=1}^{n_k}
+	Z_{i_\ell}^{(\omega)}(x).
+	\label{eq:total_tardiness}
+\end{equation}
+
+These recursions create route-level path dependence even though the disruption
+process itself is exogenous. An early travel-time realization can alter later
+departure times, deplete time-window slack, and thereby change the OMI values
+sampled by subsequent arcs. Two methods exposed to the same Hawkes trajectory
+can therefore experience different tardiness because their routes induce
+different temporal exposure profiles.
+
+% ------------------------------------------------------------
+\subsection{Mean- and tail-risk objectives}
+\label{subsec:risk_objective}
+% ------------------------------------------------------------
+
+For a routing solution $x$, we use the canonical risk-sensitive objective
+\begin{equation}
+	J_{\rho}(x)
+	=
+	\lambda_D D(x)
+	+
+	\lambda_T \rho(Z_x)
+	+
+	\lambda_W O_W(x)
+	+
+	\lambda_V O_V(x),
+	\label{eq:canonical_objective}
+\end{equation}
+where $\rho$ is either expected total tardiness,
+\[
+\rho(Z_x)=\mathbb{E}[Z_x],
+\]
+or Conditional Value-at-Risk,
+\[
+\rho(Z_x)=\CVaR_{\alpha}(Z_x).
+\]
+
+All principal experiments use $\alpha=0.95$.
+The same objective structure and penalty convention are used for ALNS and the
+learning-augmented variants; only the risk functional $\rho$ changes between
+mean-oriented and CVaR-oriented experiments.
+
+Given a frozen scenario bank
+$\Omega=\{\omega_1,\ldots,\omega_M\}$,
+the sample mean is
+\begin{equation}
+	\widehat{\mathbb{E}}_{\Omega}[Z_x]
+	=
+	\frac{1}{M}
+	\sum_{m=1}^{M}Z_x^{(\omega_m)}.
+\end{equation}
+Empirical CVaR is evaluated as the expected shortfall of the empirical
+distribution. Equivalently,
+\begin{equation}
+	\widehat{\CVaR}_{\alpha,\Omega}(Z_x)
+	=
+	\min_{\tau\in\mathbb{R}}
+	\left\{
+	\tau+
+	\frac{1}{(1-\alpha)M}
+	\sum_{m=1}^{M}
+	\left[
+	Z_x^{(\omega_m)}-\tau
+	\right]_+
+	\right\}.
+	\label{eq:empirical_cvar}
+\end{equation}
+This definition correctly handles finite samples and ties at the empirical
+quantile.
+
+Candidate and incumbent routes are compared on the \emph{same} frozen scenario
+bank whenever they compete within a search step. This common-random-number
+construction reduces Monte Carlo comparison noise and prevents differences
+between algorithms from being driven by different stochastic realizations.
+
+% ------------------------------------------------------------
+\subsection{Optimization questions}
+% ------------------------------------------------------------
+
+The formulation leads to two distinct decision problems.
+
+The first is a \emph{preoperational planning problem}: before execution begins,
+find a route set that performs well under the full stochastic disruption
+environment. We compare mean-oriented and CVaR-oriented versions of
+Eq.~\eqref{eq:canonical_objective}.
+
+The second is an \emph{online residual-routing problem}: once execution is under
+way, determine whether the unexecuted suffix of an affected vehicle should be
+modified using only information observed up to the current decision epoch.
+This second problem is conditional, causal, and computationally bounded.
+It is developed in Section~\ref{sec:methods}.
+
+
+% ============================================================
+\section{Methodology}
+\label{sec:methods}
+% ============================================================
+
+The computational framework separates preoperational route optimization from
+online recourse. The same stochastic execution model is used throughout, but
+the information available to the optimizer differs between the two stages.
+Preoperational methods evaluate complete routes against frozen scenario banks.
+The DDDAS layer instead constructs a conditional scenario bank from the
+information available at the current execution time and optimizes only the
+remaining suffix of the triggered vehicle.
+
+% ------------------------------------------------------------
+\subsection{Scenario banks and common random numbers}
+\label{subsec:scenario_banks}
+% ------------------------------------------------------------
+
+A scenario bank contains two stochastic components: a realization of the
+exogenous Hawkes event process and a matrix of baseline OD travel-time draws.
+For a fixed route and scenario, sequential execution follows
+Eqs.~\eqref{eq:effective_tt}--\eqref{eq:total_tardiness}.
+
+Separate frozen scenario banks are used for training, validation, search, and
+final testing. Within a comparison, all competing methods are evaluated on the
+same final test scenarios. During local search, incumbent and candidate routes
+are also evaluated against the same search bank. This common-random-number
+design is central to the fairness protocol because route differences are
+evaluated under identical realizations of the external disruption environment.
+
+% ------------------------------------------------------------
+\subsection{Adaptive Large Neighbourhood Search}
+\label{subsec:alns}
+% ------------------------------------------------------------
+
+Adaptive Large Neighbourhood Search (ALNS) provides the combinatorial search
+backbone~\citep{Ropke2006ALNS}. Starting from a feasible route set $x_k$, each
+iteration applies a destroy operator followed by a repair procedure to construct
+a candidate $\widetilde{x}_k$.
+
+The destroy set contains random, worst-contribution, and Shaw-related removal
+operators. At each non-null proposal, the number of removed customers is
+generated from a fraction uniformly sampled between $0.10$ and $0.15$ of the
+current customer set, with at least two removals. Candidate reinsertion uses a
+randomized regret-2 procedure with feasible-position screening under both
+weight and volume capacities. High-regret choices are rank-biased rather than
+selected deterministically, allowing controlled diversification while preserving
+feasibility.
+
+A candidate is scored through the stochastic objective
+\[
+\widehat{J}_{\rho}(x;\Omega)
+\]
+on the current frozen scenario bank $\Omega$. Search uses simulated-annealing
+acceptance: an improving candidate is accepted, while a non-improving candidate
+may be accepted according to the current temperature. The initial temperature
+is $5$ and the cooling factor is $0.995$ for each evaluated non-null candidate.
+
+The baseline ALNS is genuinely adaptive. Operator weights are initialized
+equally and updated every 25 operator decisions using
+\begin{equation}
+	w_a^{\mathrm{new}}
+	=
+	0.8\,w_a^{\mathrm{old}}
+	+
+	0.2
+	\max\left\{
+	\frac{R_a}{N_a},
+	10^{-6}
+	\right\},
+	\label{eq:alns_weight_update}
+\end{equation}
+where $R_a$ is accumulated operator reward and $N_a$ is its number of uses in
+the adaptation window. Rewards distinguish three outcomes: creation of a global
+best solution, improvement of the current solution, and accepted
+non-improving movement. The corresponding rewards are $8$, $4$, and $1$,
+respectively.
+
+This adaptive baseline is used for both the mean-oriented and CVaR-oriented
+search. Consequently, the comparison
+\[
+\text{ALNS-Mean}
+\quad\text{versus}\quad
+\text{ALNS-CVaR}
+\]
+changes the risk functional being optimized rather than replacing a
+non-adaptive heuristic with an adaptive one.
+
+% ------------------------------------------------------------
+\subsection{Learning-augmented operator selection}
+\label{subsec:rl}
+% ------------------------------------------------------------
+
+We additionally investigate whether learned search control can improve upon the
+adaptive ALNS baseline. The learning component does not construct routes
+directly. Instead, it selects the destroy neighbourhood used to propose the
+next ALNS move, while the same feasibility checks, repair mechanism, stochastic
+objective, and acceptance rule remain in force.
+
+At search step $k$, the policy observes the nine-dimensional state
+\begin{equation}
+	s_k=
+	\left(
+	\bar D_k,\,
+	\bar T^{\mathrm{nom}}_k,\,
+	u^W_k,\,
+	u^V_k,\,
+	\bar Z_k,\,
+	\sigma_{Z,k},\,
+	p^{\mathrm{OT}}_k,\,
+	\bar E^{\mathrm{OMI}}_k,\,
+	E^{\mathrm{OMI,max}}_k
+	\right),
+	\label{eq:rl_state}
+\end{equation}
+where the components are, respectively, normalized route distance, normalized
+nominal tardiness, maximum weight utilization, maximum volume utilization,
+normalized Monte Carlo mean tardiness, normalized Monte Carlo tardiness
+standard deviation, mean on-time service fraction, mean route OMI exposure,
+and maximum route OMI exposure.
+
+The last two quantities are route-exposure statistics and should not be
+interpreted as changes to the environmental OMI itself. They summarize the
+OMI values encountered at the route's actual arc-departure times.
+
+Two policy classes are considered. The feed-forward policy conditions directly
+on $s_k$. The recurrent policy uses a gated recurrent unit (GRU),
+\begin{equation}
+	h_k
+	=
+	\mathrm{GRU}_{\theta}(s_k,h_{k-1}),
+	\qquad
+	a_k
+	\sim
+	\pi_{\theta}(\cdot\mid h_k).
+	\label{eq:gru_policy}
+\end{equation}
+Only the newly observed state $s_k$ is processed at step $k$ together with the
+previous hidden state $h_{k-1}$; the full preceding sequence is not processed
+again.
+
+Learning is aligned with exactly the same stochastic objective used by the
+search. If $x_k$ is the incumbent route set and $\widetilde{x}_k$ the proposed
+candidate, both evaluated on scenario bank $\Omega_b$, the immediate learning
+signal is
+\begin{equation}
+	r_k
+	=
+	\widehat{J}_{\rho}(x_k;\Omega_b)
+	-
+	\widehat{J}_{\rho}(\widetilde{x}_k;\Omega_b).
+	\label{eq:rl_reward}
+\end{equation}
+Thus a positive reward corresponds to a candidate with a lower objective on the
+same stochastic realizations. Simulated-annealing acceptance is handled
+separately: it determines whether the candidate becomes the next search state,
+but it does not redefine the reward of a rejected proposal.
+
+Feed-forward and recurrent policies are evaluated against both the adaptive ALNS
+baseline and a uniform operator-selection control. Offline policy-training cost
+is accounted for separately from the online search budget, while final
+method-to-method search comparisons use matched candidate--scenario evaluation
+budgets. This design allows the learning component to be assessed as an
+empirical augmentation rather than assuming that recurrence must be beneficial
+because the environment contains temporal persistence.
+
+% ------------------------------------------------------------
+\subsection{Causal DDDAS recourse}
+\label{subsec:dddas}
+% ------------------------------------------------------------
+
+The Dynamic Data-Driven Application Systems (DDDAS) component
+\citep{Darema2004DDDAS} operates during route execution.
+Unlike the preoperational optimizers, it has access only to information that
+would have been observed by the decision time.
+
+A decision epoch occurs immediately before a vehicle starts a new arc, after
+any waiting and service at its current node have been completed. At departure
+time $t_0$, the observable disruption history is
+\[
+\mathcal{H}_{t_0}
+=
+\{\tau_q:\tau_q<t_0\};
+\]
+events at or after $t_0$ are not available to the controller.
+Similarly, baseline travel times are regarded as observed only for arcs whose
+traversal has already been completed.
+
+For the exponential Hawkes model, the observed prefix determines the current
+excitation state
+\begin{equation}
+	s_H(t_0)
+	=
+	\sum_{\tau_q<t_0}
+	\exp[-\beta(t_0-\tau_q)],
+	\qquad
+	m(t_0)=\xi s_H(t_0).
+	\label{eq:conditional_hawkes_state}
+\end{equation}
+Future Hawkes events can therefore be generated conditionally from the pair
+$(t_0,s_H(t_0))$ without access to the unobserved future realization.
+
+Conditional scenario generation at $t_0$ follows three rules:
+\begin{enumerate}
+	\item the observed Hawkes prefix is held fixed and future events are sampled
+	conditionally from the state in
+	Eq.~\eqref{eq:conditional_hawkes_state};
+	
+	\item baseline travel times for already completed OD traversals retain their
+	observed realized values;
+	
+	\item baseline travel times for unobserved OD pairs are newly sampled from
+	the PERT model in Section~\ref{subsec:baseline_tt}.
+\end{enumerate}
+No latent future events and no unobserved entries of the originally realized OD
+matrix are supplied to the replanner.
+
+% ------------------------------------------------------------
+\subsection{Memory-triggered episodes}
+\label{subsec:trigger}
+% ------------------------------------------------------------
+
+Online reconsideration is governed by a prospectively specified OMI trigger.
+The controller is initially armed. The first eligible departure satisfying
+\begin{equation}
+	\mathrm{OMI}(t_0)\ge0.55
+	\label{eq:omi_trigger}
+\end{equation}
+opens a high-memory episode.
+The controller is rearmed only after a subsequent observed departure has
+$\mathrm{OMI}(t)<0.55$; no additional cooldown interval is imposed.
+
+Within an episode, each vehicle can receive at most one recourse attempt, and a
+vehicle is eligible only if at least two customers remain unserved on its
+current route. A trigger therefore denotes \emph{route reconsideration}, not
+mandatory rerouting.
+
+The online optimizer cannot change the already executed portion of the route.
+At the decision epoch, the following elements are fixed:
+the current vehicle node, its executed prefix, its customer assignment, and the
+final return to the depot. The decision variable is only the ordering of the
+remaining customers assigned to the triggered vehicle.
+
+% ------------------------------------------------------------
+\subsection{Conditional local CVaR replanning}
+\label{subsec:conditional_replanning}
+% ------------------------------------------------------------
+
+Let $r^{\mathrm{inc}}_{k,t_0}$ denote the incumbent residual suffix of triggered
+vehicle $k$ at time $t_0$. A conditional scenario bank
+$\Omega_{t_0}$ is generated from the observed information described above.
+The local online objective uses the same distance and tardiness weights as the
+preoperational formulation, with $\rho=\CVaR_{0.95}$.
+
+The incumbent and every candidate suffix are evaluated on the same conditional
+scenario bank. Define
+\begin{equation}
+	G_{t_0}
+	=
+	\widehat{J}_{\CVaR}
+	\left(
+	r^{\mathrm{inc}}_{k,t_0};
+	\Omega_{t_0}
+	\right)
+	-
+	\widehat{J}_{\CVaR}
+	\left(
+	r^{\mathrm{sel}}_{k,t_0};
+	\Omega_{t_0}
+	\right),
+	\label{eq:conditional_search_gain}
+\end{equation}
+where $r^{\mathrm{sel}}_{k,t_0}$ is the best suffix returned by the bounded
+search. The suffix is replaced only when the conditional search objective
+improves; hence an executed rerouting decision satisfies $G_{t_0}>0$ up to
+numerical tolerance.
+
+This is deliberately a \emph{local triggered-vehicle} recourse problem.
+It should not be interpreted as exact minimization of the conditional CVaR of
+the entire fleet. Final performance, however, is always measured by replaying
+the complete fleet execution under the same realized environmental trajectory.
+
+% ------------------------------------------------------------
+\subsection{Bounded online search}
+\label{subsec:bounded_search}
+% ------------------------------------------------------------
+
+Each conditional replanning attempt uses $100$ conditional scenarios.
+The ALNS search seeks to evaluate up to $250$ distinct non-null candidate
+suffixes but is subject to a hard limit of $25{,}000$ operator decisions.
+Null proposals count against the operator-decision budget but require no
+scenario evaluation.
+
+If the target number of candidate evaluations is reached first, search terminates
+normally. If the operator-decision limit is reached first, the search terminates
+at the cap and returns the best admissible suffix found up to that point.
+Consequently, if $C\le250$ non-null candidates are actually evaluated, the
+conditional scenario-evaluation cost of that attempt is
+\begin{equation}
+	N_{\mathrm{eval}}
+	=
+	100(1+C),
+	\label{eq:conditional_budget}
+\end{equation}
+including the incumbent evaluation.
+
+The stopping rule makes online recourse computationally bounded even in residual
+states for which the destroy--repair neighbourhood produces very few distinct
+feasible alternatives.
+
+% ------------------------------------------------------------
+\subsection{Sequential execution algorithm}
+\label{subsec:sequential_algorithm}
+% ------------------------------------------------------------
+
+Algorithm~\ref{alg:sequential_dddas} summarizes the causal execution protocol.
+
+\begin{algorithm}[t]
+	\caption{Causal memory-triggered DDDAS recourse}
+	\label{alg:sequential_dddas}
+	\begin{algorithmic}[1]
+		\State Deploy a preoperational route set $x$
+		\State Initialize the Hawkes process and arm the episode trigger
+		\While{unserved customers remain}
+		\State Select the next vehicle departure in chronological order
+		\State Complete any waiting and service at the current node
+		\State Set current departure time $t_0$
+		\State Observe disruption events with $\tau_q<t_0$
+		\State Compute $m(t_0)$ and $\mathrm{OMI}(t_0)$
+		\If{$\mathrm{OMI}(t_0)<0.55$}
+		\State Rearm the trigger
+		\EndIf
+		\If{trigger is armed and $\mathrm{OMI}(t_0)\ge0.55$}
+		\State Open a high-memory episode and disarm the trigger
+		\EndIf
+		\If{vehicle is eligible for recourse in the current episode}
+		\State Construct a conditional scenario bank from observed information
+		\State Run bounded local ALNS--CVaR on the vehicle's residual suffix
+		\If{conditional objective improves}
+		\State Replace the unexecuted suffix
+		\EndIf
+		\State Mark the vehicle as attempted for the current episode
+		\EndIf
+		\State Start the next arc using
+		$1+\kappa\,\mathrm{OMI}(t_0)$
+		\State Hold that arc multiplier fixed until arrival
+		\State Register the realized baseline OD time as observed upon arrival
+		\EndWhile
+		\State Compute full-fleet realized distance, tardiness, and service outcomes
+	\end{algorithmic}
+\end{algorithm}
+
+The static and DDDAS executions used for paired evaluation share the same
+realized Hawkes path and baseline travel-time realization. Thus differences
+between them arise from route decisions rather than from different environmental
+draws.
+
+% ------------------------------------------------------------
+\subsection{Methodological separation of ex-ante and ex-post quantities}
+\label{subsec:exante_expost}
+% ------------------------------------------------------------
+
+A final distinction is essential for interpreting online performance.
+The quantity in Eq.~\eqref{eq:conditional_search_gain} is an
+\emph{ex-ante conditional} comparison based on a distribution of possible
+future continuations at the decision epoch. By contrast, realized route cost is
+computed after execution from the single future trajectory that actually occurs,
+\begin{equation}
+	J_{\mathrm{realized}}
+	=
+	D_{\mathrm{realized}}
+	+
+	2Z_{\mathrm{realized}},
+	\label{eq:realized_objective}
+\end{equation}
+for the confirmatory sequential experiment.
+
+Accordingly,
+\[
+G_{t_0}>0
+\]
+does not imply that the selected suffix must produce a lower
+$J_{\mathrm{realized}}$ on every subsequent realization.
+The former is a conditional risk statement; the latter is one sample from the
+conditional future distribution. Maintaining this separation prevents
+decision-time risk improvement from being conflated with guaranteed ex-post
+performance.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% ============================================================
+\section{Experimental Design and Evaluation}
+\label{sec:experiments}
+% ============================================================
+
+The experimental design was constructed to separate four questions that are
+frequently conflated in dynamic stochastic routing:
+(i) whether temporal persistence changes routing risk,
+(ii) whether explicit tail-risk optimization improves preoperational routing,
+(iii) whether learned operator selection improves upon adaptive search under a
+comparable computational budget, and
+(iv) whether causal online recourse provides additional value once route
+execution has begun.
+
+All stochastic comparisons use common random numbers whenever methods are
+evaluated against one another. Search, validation, transfer, and sequential
+recourse experiments were frozen before the corresponding confirmatory
+comparisons were inspected. Results from earlier exploratory implementations are
+not included in the analyses reported below.
+
+% ------------------------------------------------------------
+\subsection{Athens-derived operational instances}
+\label{subsec:instances}
+% ------------------------------------------------------------
+
+The experiments use nine daily last-mile delivery instances derived from the
+Athens operational data described by \citet{Vrani2025DataInBrief}.
+The source data provide the spatial structure, customer orders, weight and
+volume demands, service information, and OD travel-time descriptors used to
+construct the routing instances.
+
+The nine days contain between 63 and 84 customer orders, excluding the depot,
+and exhibit substantial heterogeneity in daily demand and in the consistency of
+the OD travel-time triplets. Table~\ref{tab:instance_characteristics}
+summarizes the principal structural characteristics used in the present study.
+
+\begin{table}[t]
+	\centering
+	\caption{Structural characteristics of the nine Athens-derived daily instances.
+		The final column reports the fraction of OD travel-time triplets requiring
+		ordering regularization for stochastic PERT sampling. The raw source values
+		themselves are not modified.}
+	\label{tab:instance_characteristics}
+	\begin{tabular}{rrrrr}
+		\toprule
+		Day &
+		Customers &
+		Weight (kg) &
+		Volume (m$^3$) &
+		PERT-reg. arcs (\%) \\
+		\midrule
+		1 & 78 & 1880.498 & 9.0200 & 7.61 \\
+		2 & 63 & 1394.549 & 5.2281 & 23.14 \\
+		3 & 67 &  687.633 & 4.0536 & 8.89 \\
+		4 & 69 & 1689.368 & 4.7584 & 0.62 \\
+		5 & 75 & 1270.167 & 4.4493 & 1.04 \\
+		6 & 77 & 1301.434 & 4.5925 & 2.93 \\
+		7 & 66 & 1034.561 & 3.6932 & 0.25 \\
+		8 & 74 & 1095.370 & 3.2131 & 0.22 \\
+		9 & 84 & 1301.537 & 5.3159 & 0.10 \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+The empirical routing data and the experimental disruption mechanism play
+different roles. The Athens data define the operational base instances, whereas
+the tightened service windows and Hawkes disruption process define controlled
+stress scenarios. Accordingly, the experiments should be interpreted as
+\emph{Athens-derived real operational instances under controlled stress
+	scenarios}, not as a reconstruction of historical disruption events in Athens.
+
+The vehicle fleet is fixed at six vehicles. Weight and volume capacities are
+experimental design parameters established before the comparative analyses;
+they should not be interpreted as observed capacities of a specific Athens
+fleet. Capacity feasibility is enforced simultaneously in both dimensions.
+
+For the deterministic OR-Tools computations, continuous demand quantities are
+mapped to integer units without truncating positive demands. Weight is scaled by
+$10^3$ and volume by $10^6$ before integer optimization. Stochastic evaluation
+is subsequently carried out in the original physical units.
+
+The controlled stress protocol uses service-window widths of 180 minutes.
+Its purpose is not to reproduce a specific historical operating day exactly,
+but to provide a common reliability environment in which differences among
+mean-oriented, tail-oriented, learning-augmented, and dynamically adaptive
+routing policies can be exposed.
+
+% ------------------------------------------------------------
+\subsection{Preoperational route initialization}
+\label{subsec:initialization}
+% ------------------------------------------------------------
+
+To avoid method-specific advantages arising from different starting solutions,
+route initialization is performed independently of the stochastic search
+methods.
+
+For the nine-day cross-instance experiment, a common OR-Tools initialization
+protocol was frozen before comparative stochastic optimization.
+The protocol tests a fixed ordered collection of standard first-solution
+strategies, including local cheapest insertion, path-most-constrained arc,
+savings, global-cheapest arc, and path-cheapest arc, combined with guided local
+search. Each strategy is allocated the same time allowance, and the first
+feasible solution generated by the frozen protocol is retained.
+
+This fallback mechanism is applied uniformly across days rather than selecting
+the best initializer retrospectively for each instance. In particular, different
+strategies may provide the first feasible route on different days without
+constituting instance-specific tuning.
+
+The earlier source-day learning validation on Day~1 uses its independently
+frozen Day~1 initialization. The subsequent nine-day experiment uses the common
+cross-day initialization protocol described above. Numerical results from these
+two stages are therefore interpreted within their respective experimental
+designs and are not pooled as if they arose from an identical initial route.
+
+% ------------------------------------------------------------
+\subsection{Nominal stochastic configuration}
+\label{subsec:nominal_configuration}
+% ------------------------------------------------------------
+
+The nominal persistent-disruption configuration uses
+\begin{equation}
+	\beta=0.60,
+	\qquad
+	\eta=0.35,
+	\qquad
+	\mu=0.01,
+	\qquad
+	\kappa=0.90.
+	\label{eq:nominal_hawkes_parameters}
+\end{equation}
+With the parameterization $\xi=\eta\beta$, the nominal excitation amplitude is
+$\xi=0.21$, and the stationary mean Hawkes event intensity is
+\begin{equation}
+	\bar{\lambda}
+	=
+	\frac{0.01}{1-0.35}
+	\simeq
+	0.01538.
+\end{equation}
+
+The modified PERT model uses
+$\lambda_{\mathrm{PERT}}=4$, and all tail-risk experiments use
+\begin{equation}
+	\alpha=0.95.
+\end{equation}
+The canonical objective weights are
+\begin{equation}
+	\lambda_D=1,
+	\qquad
+	\lambda_T=2,
+	\qquad
+	\lambda_W=\lambda_V=10.
+	\label{eq:objective_weights}
+\end{equation}
+Because weight and volume feasibility are enforced by the route-construction
+mechanism, the last two terms remain zero for reported feasible solutions.
+
+% ------------------------------------------------------------
+\subsection{Frozen stochastic evaluation banks}
+\label{subsec:frozen_banks}
+% ------------------------------------------------------------
+
+Four conceptually distinct scenario-bank roles are used:
+\[
+\Omega_{\mathrm{train}},
+\qquad
+\Omega_{\mathrm{val}},
+\qquad
+\Omega_{\mathrm{search}},
+\qquad
+\Omega_{\mathrm{test}}.
+\]
+The corresponding baseline configuration uses
+\begin{equation}
+	|\Omega_{\mathrm{train}}|
+	=
+	|\Omega_{\mathrm{val}}|
+	=
+	|\Omega_{\mathrm{search}}|
+	=
+	100,
+	\qquad
+	|\Omega_{\mathrm{test}}|
+	=
+	1000.
+	\label{eq:scenario_bank_sizes}
+\end{equation}
+
+Training scenarios are used only when fitting learned policies.
+Validation scenarios support policy selection without using the final test bank.
+Search scenarios are used to compare candidate and incumbent routes during
+optimization. The test bank is held out from search and is used only for final
+performance evaluation.
+
+Within any paired comparison, the same test scenarios are supplied to all
+methods. Candidate and incumbent solutions within ALNS or learned search also
+share the same search bank. Thus stochastic differences between methods are
+paired at the scenario level rather than being confounded with independently
+generated disruption realizations.
+
+% ------------------------------------------------------------
+\subsection{Search-budget matching}
+\label{subsec:fair_budget}
+% ------------------------------------------------------------
+
+A central objective of the experimental design is to distinguish algorithmic
+performance from computational expenditure. For the principal ALNS and frozen
+learned-policy comparisons, online search is therefore matched by the number of
+candidate-route--scenario evaluations.
+
+Each search uses $100$ search scenarios and evaluates up to $250$ non-null
+candidate route sets in addition to the incumbent. The nominal stochastic
+evaluation budget is consequently
+\begin{equation}
+	B_{\mathrm{search}}
+	=
+	100(1+250)
+	=
+	25{,}100
+	\label{eq:search_budget}
+\end{equation}
+scenario evaluations.
+
+The same search budget is applied to adaptive ALNS and to the feed-forward and
+GRU-guided variants. Runtime is reported as a complementary quantity, but is not
+used as the sole fairness criterion because stochastic objective evaluation and
+neighbourhood generation have method-dependent computational structure.
+
+Offline RL training is \emph{not} included inside
+$B_{\mathrm{search}}$. Instead, it is reported separately as an additional
+up-front computational cost. In the source-day experiments, fitting one policy
+requires approximately $2.3\times10^5$ scenario evaluations, or roughly an order
+of magnitude more stochastic evaluations than one frozen-policy search.
+This distinction prevents the cost of policy learning from being hidden inside
+a nominally equal online-search comparison.
+
+% ------------------------------------------------------------
+\subsection{Source-day learning experiment}
+\label{subsec:source_day_rl}
+% ------------------------------------------------------------
+
+The first learning experiment is conducted on Day~1 and compares six
+risk--search combinations:
+\[
+\begin{array}{lll}
+	\text{ALNS-Mean},      &
+	\text{RL-FF-Mean},     &
+	\text{RL-GRU-Mean},
+	\\
+	\text{ALNS-CVaR},      &
+	\text{RL-FF-CVaR},     &
+	\text{RL-GRU-CVaR}.
+\end{array}
+\]
+Here ``FF'' denotes the feed-forward operator-selection policy and ``GRU''
+denotes the recurrent policy in Eq.~\eqref{eq:gru_policy}.
+
+Ten independent paired repetitions are used for final source-day evaluation.
+Within each repetition, competing methods share the relevant frozen stochastic
+banks. Learned policies are trained and validated before final test evaluation;
+the $1000$-scenario final test bank is not used for policy fitting or
+model selection.
+
+A uniform operator-selection policy is evaluated as an additional control.
+It uses the same search machinery and stochastic budget but samples among the
+available destroy operators uniformly rather than through learned or adaptive
+selection. This control is important because it distinguishes the value of a
+trained policy from improvements that could arise simply through stochastic
+operator variation.
+
+The source-day analysis therefore addresses two different questions:
+whether learned policies outperform the genuine adaptive ALNS baseline, and
+whether any observed learned-policy advantage exceeds that of a simple uniform
+operator selector.
+
+% ------------------------------------------------------------
+\subsection{Zero-shot cross-day policy transfer}
+\label{subsec:transfer}
+% ------------------------------------------------------------
+
+Generalization is evaluated without target-day retraining.
+Policies are trained only on Day~1 and then transferred directly to Days~2--9.
+No target-day learning, fine-tuning, or target-specific adjustment of policy
+parameters is permitted.
+
+The transfer experiment uses 40 frozen source-policy checkpoints, corresponding
+to four checkpoints from each of ten source training repetitions. Every
+checkpoint is evaluated on the eight target days using the same target-day route
+initializations and stochastic evaluation protocol as the corresponding
+uniform-policy control.
+
+The primary transfer contrasts compare learned and uniform operator selection
+for both feed-forward and recurrent policies under the mean- and CVaR-oriented
+objectives. The target day, rather than an individual checkpoint or stochastic
+run, is the cross-instance unit of analysis. Four prespecified primary transfer
+contrasts are corrected jointly using the Holm procedure.
+
+This design tests zero-shot transportability of the learned search policy rather
+than its ability to be retrained on each new instance.
+
+% ------------------------------------------------------------
+\subsection{Persistence experiment}
+\label{subsec:persistence_experiment}
+% ------------------------------------------------------------
+
+A separate set of experiments isolates the effect of temporal persistence.
+The Hawkes branching ratio is varied over
+\begin{equation}
+	\eta
+	\in
+	\{0,\;0.15,\;0.35,\;0.55,\;0.70\}.
+	\label{eq:eta_grid}
+\end{equation}
+
+A direct change in $\eta$ would simultaneously alter event clustering and the
+stationary mean event rate. To prevent this confounding, the first control fixes
+the stationary mean intensity at its nominal value,
+$\bar{\lambda}$, by setting
+\begin{equation}
+	\mu_{\eta}
+	=
+	\bar{\lambda}(1-\eta).
+	\label{eq:mu_matched}
+\end{equation}
+Thus $\eta$ changes the temporal clustering of the disruption process without
+changing its stationary mean number of events.
+
+For this persistence experiment, the operational memory transformation that
+maps realized events into OMI retains the nominal decay and excitation
+parameters. This ensures that the $\eta=0$ generator provides a meaningful
+Poisson-like no-self-excitation comparison while the route can still experience
+nonzero disruption exposure when external events occur.
+
+Before routing comparisons, $10{,}000$ environmental trajectories are generated
+for each persistence regime. These simulations are used only to characterize
+the experimental manipulation---including event-count dispersion, no-event
+frequency, event timing, and time-averaged OMI---rather than to tune routing
+algorithms.
+
+% ------------------------------------------------------------
+\subsection{Mean-impact-matched persistence control}
+\label{subsec:mean_impact_control}
+% ------------------------------------------------------------
+
+Matching event intensity does not by itself guarantee equal mean operational
+impact because changes in clustering can alter the time profile of OMI.
+We therefore introduce a second, stricter control that matches the
+\emph{continuous-time mean environmental travel-time multiplier}
+\begin{equation}
+	\mathbb{E}_t
+	\left[
+	1+\kappa_{\eta}\mathrm{OMI}_{\eta}(t)
+	\right].
+	\label{eq:mean_multiplier_control}
+\end{equation}
+
+The nominal target is
+\[
+\mathbb{E}_t[M(t)]
+=
+1.052489.
+\]
+The resulting prospectively computed impact coefficients are
+\begin{equation}
+	\begin{array}{c|ccccc}
+		\eta
+		&0
+		&0.15
+		&0.35
+		&0.55
+		&0.70\\
+		\hline
+		\kappa_{\eta}
+		&0.6953
+		&0.7646
+		&0.9000
+		&1.1418
+		&1.4816.
+	\end{array}
+	\label{eq:kappa_matched_values}
+\end{equation}
+
+This control matches the continuous-time environmental mean multiplier, not the
+mean multiplier sampled by any particular route. Route-sampled exposure remains
+route-dependent because methods depart on arcs at different times.
+
+The confirmatory persistence-routing experiment is performed on Day~1 using ten
+paired repetitions per persistence regime. Candidate search uses $100$
+scenarios and final evaluation uses $1000$ scenarios. No search parameter is
+retuned as $\eta$ changes.
+
+The experiment evaluates both the direct change in routing tail risk as
+persistence increases and whether persistence systematically changes the
+relative advantage of CVaR-oriented over mean-oriented ALNS.
+
+% ------------------------------------------------------------
+\subsection{Nine-day risk-aware routing experiment}
+\label{subsec:nine_day_experiment}
+% ------------------------------------------------------------
+
+Cross-instance robustness of explicit tail-risk optimization is assessed on all
+nine Athens-derived days under the nominal disruption configuration.
+Three paired optimization repetitions are performed on each day using the
+common cross-day initialization protocol.
+
+The principal comparison is
+\[
+\text{ALNS-Mean}
+\quad\text{versus}\quad
+\text{ALNS-CVaR}.
+\]
+Both methods use the same adaptive ALNS engine, neighbourhoods, search length,
+scenario-bank size, and final test bank. The comparison therefore isolates the
+effect of changing the optimized risk functional from expected tardiness to
+$\CVaR_{0.95}$.
+
+For each repetition, candidate search is based on $100$ stochastic scenarios and
+final evaluation on $1000$ held-out scenarios. The three optimization
+replications are first averaged within each operational day. Consequently, the
+cross-instance inferential unit is the \emph{day}, giving $n=9$ independent
+day-level contrasts rather than treating the 27 optimization runs as independent
+instances.
+
+The two prespecified primary contrasts are
+\begin{align}
+	\Delta J_{\mathrm{CVaR}}
+	&=
+	J_{\mathrm{CVaR}}(\text{ALNS-Mean})
+	-
+	J_{\mathrm{CVaR}}(\text{ALNS-CVaR}),
+	\label{eq:delta_j_cvar}
+	\\
+	\Delta T_{\mathrm{tail}}
+	&=
+	\CVaR_{0.95}(Z_{\text{ALNS-Mean}})
+	-
+	\CVaR_{0.95}(Z_{\text{ALNS-CVaR}}).
+	\label{eq:delta_tail}
+\end{align}
+Positive values favor CVaR-oriented search.
+
+Across-day uncertainty is summarized using bootstrap confidence intervals over
+the nine day-level contrasts. Because the direction of the paired contrast is
+prespecified, an exact two-sided sign-flip test is additionally used as a
+distribution-free check of cross-day consistency.
+
+% ------------------------------------------------------------
+\subsection{Confirmatory sequential DDDAS experiment}
+\label{subsec:r5h_design}
+% ------------------------------------------------------------
+
+The online DDDAS experiment is deliberately separated from the nine-day
+preoperational analysis. Its purpose is not to establish cross-instance
+superiority over the entire dataset, but to examine the mechanics and
+realized consequences of causal sequential recourse in greater depth.
+
+Three representative instances---Days~2, 5, and 7---were selected
+prospectively from the nine-day set using structural information only, before
+the confirmatory sequential outcomes were inspected. Day~1 was excluded from
+this selection because it had already been used extensively during development
+and runtime validation.
+
+For each selected day, the three independently generated ALNS-CVaR routes from
+the nine-day experiment are frozen as preoperational starting solutions.
+Twenty realized environmental trajectories are then generated per day.
+The same realized Hawkes and baseline travel-time trajectory is replayed across
+the three preoperational route replicates for a given day--path pair, producing
+\[
+3\ \text{days}
+\times
+3\ \text{route replicates}
+\times
+20\ \text{realized paths}
+=
+180
+\]
+paired static-versus-DDDAS executions.
+
+Because the same realized environment is shared across the three route
+replicates, these 180 runs do not constitute 180 independent environmental
+observations. There are instead
+\[
+3\times20=60
+\]
+unique day--realized-path environments.
+Recourse-search random seeds are distinct across route replicates so that the
+online optimizer itself does not reuse an identical random search trajectory.
+
+Each DDDAS recourse attempt uses $100$ conditional scenarios and the bounded
+stopping rule in Section~\ref{subsec:bounded_search}.
+Static and DDDAS execution share the same complete realized environmental path.
+The static comparator simply continues executing its frozen preoperational route,
+whereas DDDAS may alter eligible residual suffixes using only causally observed
+information.
+
+The realized composite criterion is
+\begin{equation}
+	J_{\mathrm{realized}}
+	=
+	D_{\mathrm{realized}}
+	+
+	2Z_{\mathrm{realized}},
+\end{equation}
+and paired contrasts are defined as
+\begin{align}
+	\Delta J
+	&=
+	J_{\mathrm{static}}
+	-
+	J_{\mathrm{DDDAS}},
+	\\
+	\Delta Z
+	&=
+	Z_{\mathrm{static}}
+	-
+	Z_{\mathrm{DDDAS}},
+	\\
+	\Delta D
+	&=
+	D_{\mathrm{static}}
+	-
+	D_{\mathrm{DDDAS}}.
+\end{align}
+Positive values favor DDDAS.
+
+For scientific summaries, the three route replicates are first averaged within
+each fixed day--realized-path pair. This yields 20 Monte Carlo path-level
+contrasts per selected day. Within-day uncertainty is summarized by
+nonparametric bootstrap confidence intervals over these 20 realized
+environments, conditional on the frozen three-route ensemble.
+
+Only three days are examined in this deep sequential experiment. We therefore
+do not use the 180 runs, or even the 60 path-level observations, as independent
+cross-instance replicates. Cross-day R5-H summaries are descriptive rather than
+population-level hypothesis tests. Cross-instance evidence is instead provided
+by the nine-day preoperational experiment in
+Section~\ref{subsec:nine_day_experiment}.
+
+No ``realized CVaR'' is constructed from an individual executed trajectory.
+The decision-time CVaR used by the online optimizer is a conditional
+distributional quantity, whereas each static--DDDAS comparison produces one
+subsequently realized outcome.
+
+% ------------------------------------------------------------
+\subsection{Performance measures}
+\label{subsec:performance_metrics}
+% ------------------------------------------------------------
+
+The principal routing measures are:
+\begin{enumerate}
+	\item total route distance $D$;
+	\item mean realized total tardiness $\mathbb{E}[Z]$;
+	\item $\CVaR_{0.95}(Z)$;
+	\item fraction of customers served on time;
+	\item maximum realized customer tardiness; and
+	\item the objective corresponding to the risk functional used in the
+	relevant experiment.
+\end{enumerate}
+
+Route-dependent mean and maximum OMI exposure are recorded as descriptive
+diagnostics. These quantities summarize the disruption states sampled at the
+actual departure times of the route and must not be interpreted as changes in
+the environmental Hawkes process itself.
+
+For learning experiments, computational accounting includes online
+candidate--scenario evaluations, search runtime, and offline training cost.
+For sequential DDDAS, additional operational measures include the number of
+high-memory episodes, recourse attempts, executed route changes, evaluated
+non-null candidates, operator decisions, decision-cap terminations, conditional
+scenario evaluations, and recourse runtime.
+
+A DDDAS trigger is therefore evaluated both as a computational event and as an
+operational decision. The opening of a high-memory episode does not imply that
+a route change will occur.
+
+% ------------------------------------------------------------
+\subsection{Paired analysis and inferential units}
+\label{subsec:inference}
+% ------------------------------------------------------------
+
+The experimental design consistently distinguishes stochastic repetitions from
+independent operational instances.
+
+For the Day~1 learning study, ten paired stochastic repetitions quantify
+source-instance variability.
+For zero-shot transfer, the target operational day is the cross-instance unit
+($n=8$).
+For the principal ALNS-Mean versus ALNS-CVaR comparison, the inferential unit is
+again the operational day ($n=9$), after averaging the three optimization
+replications within each day.
+For the deep DDDAS study, uncertainty is summarized separately within each of
+the three prospectively selected days, using the 20 realized environmental
+paths after averaging the three frozen route replicates.
+
+This hierarchy avoids treating algorithmic seeds or common-random-number
+replications as independent real-world instances.
+
+All reported method differences retain a fixed sign convention.
+For the nine-day risk experiment,
+\[
+\text{ALNS-Mean}-\text{ALNS-CVaR}>0
+\]
+favors CVaR-oriented optimization.
+For DDDAS,
+\[
+\text{static}-\text{DDDAS}>0
+\]
+favors dynamic recourse.
+For learned-versus-uniform transfer comparisons, the contrast is defined as
+\[
+\text{learned}-\text{uniform},
+\]
+so negative objective differences favor the learned policy.
+
+% ------------------------------------------------------------
+\subsection{Computational environment and reproducibility}
+\label{subsec:computational_environment}
+% ------------------------------------------------------------
+
+All final computations were executed on a single Apple-silicon workstation with
+an Apple M5 Max processor, 18 CPU cores, and 64~GB of memory. The computational
+pipeline uses Python~3.12.13, NumPy~1.26.4, pandas~3.0.5, SciPy~1.13.1,
+PyTorch~2.2.2, and Google OR-Tools~9.10.4067.
+
+The recurrent models are sufficiently small that GPU acceleration does not
+provide an advantage on the test platform; final learning and routing
+experiments therefore use CPU execution. Runtime comparisons are consequently
+made within a common hardware and software environment.
+
+Scenario seeds, train/validation/search/test separation, route initializations,
+method configurations, and confirmatory sequential schedules are stored as
+reproducibility metadata. Common-random-number checks and sequential replay
+tests verify that static and dynamic methods observe identical realized
+environmental trajectories whenever a paired comparison requires them.
+
+
+
+
+
+
+
+
+
+
+% =====================
+%        RESULTS
+% =====================
+
+
+
+% ============================================================
+\section{Results}
+\label{sec:results}
+% ============================================================
+
+The results are organized around the four questions posed in
+Section~\ref{sec:experiments}. We first verify that the persistence manipulation
+changes the temporal organization of disruption events rather than merely their
+mean frequency. We then examine how this persistence affects routing risk under
+the mean-impact-matched control. Next, we assess the cross-instance value of
+explicit CVaR optimization and the incremental contribution of learned operator
+selection. Finally, we evaluate the causal sequential DDDAS mechanism on the
+three prospectively selected representative days.
+
+% ------------------------------------------------------------
+\subsection{Persistence reorganizes disruption exposure into intermittent bursts}
+\label{subsec:results_environment}
+% ------------------------------------------------------------
+
+The environmental simulation confirms that increasing the Hawkes branching
+ratio changes the temporal organization of disruptions substantially even when
+the stationary mean event intensity is held fixed through
+Eq.~\eqref{eq:mu_matched}.
+Across $10{,}000$ simulated environmental trajectories per regime, the mean
+number of events remained approximately constant, whereas event-count
+dispersion increased sharply with persistence.
+
+Table~\ref{tab:environmental_persistence} summarizes the principal diagnostics.
+The event-count Fano factor increased from approximately $1.02$ at $\eta=0$ to
+$11.02$ at $\eta=0.70$. At the same time, the probability of observing no
+event over the operating horizon increased from $0.03\%$ to $9.17\%$.
+The probability of an event occurring within the first 60 minutes decreased
+from $0.608$ to $0.238$.
+
+\begin{table}[t]
+	\centering
+	\caption{Environmental diagnostics for the stationary-rate-matched persistence
+		experiment. Each row is based on $10{,}000$ simulated Hawkes trajectories.
+		Increasing $\eta$ changes temporal clustering while the stationary mean event
+		rate is held fixed.}
+	\label{tab:environmental_persistence}
+	\begin{tabular}{rrrrr}
+		\toprule
+		$\eta$ &
+		Fano factor &
+		$P(N=0)$ &
+		$P(\tau_1\le60)$ &
+		Mean time-OMI \\
+		\midrule
+		0.00 & 1.02  & 0.0003 & 0.6081 & 0.07550 \\
+		0.15 & 1.40  & 0.0014 & 0.5432 & 0.06865 \\
+		0.35 & 2.44  & 0.0052 & 0.4528 & 0.05832 \\
+		0.55 & 4.77  & 0.0282 & 0.3437 & 0.04597 \\
+		0.70 & 11.02 & 0.0917 & 0.2376 & 0.03543 \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+The declining time-averaged OMI should not be interpreted as evidence that a
+more persistent environment is ``safer.'' Rather, higher persistence
+concentrates disruption activity into more strongly clustered episodes separated
+by longer quiet periods. Consistently with this interpretation, the upper tail
+of instantaneous OMI remains high across regimes, with its $0.99$ quantile close
+to $0.94$ throughout the persistence grid.
+
+These environmental diagnostics are summarized in Fig.~\ref{fig:persistence_environment}.
+Thus, the persistence manipulation primarily changes the \emph{temporal
+	structure} of environmental exposure: diffuse disruption activity at low
+$\eta$ is replaced by increasingly intermittent and clustered bursts as
+$\eta$ increases.
+
+% ------------------------------------------------------------
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/main/pdf/Fig2_environment_v3.pdf}
+\caption{\textbf{Persistence reorganizes disruption activity under matched stationary event intensity.} (a) Event-count overdispersion rises sharply with the Hawkes branching ratio; the dashed line marks the Poisson reference (Fano factor $=1$). (b) Higher persistence produces more event-free horizons and fewer early events, consistent with longer quiet intervals separated by clustered disruption episodes. (c) Time-averaged OMI decreases as exposure becomes more intermittent; this lower mean should not be interpreted as lower upper-tail routing risk. Environmental diagnostics use 10,000 trajectories per persistence regime.}
+\label{fig:persistence_environment}
+\end{figure*}
+
+\subsection{Persistence increases tail risk under matched mean environmental impact}
+\label{subsec:results_persistence}
+% ------------------------------------------------------------
+
+The mean-impact-matched experiment isolates the operational consequences of
+this change in temporal structure.
+The impact coefficient $\kappa_{\eta}$ is adjusted according to
+Eq.~\eqref{eq:kappa_matched_values} so that the continuous-time mean
+environmental travel-time multiplier remains fixed across persistence regimes.
+
+Despite this control, routing tail risk increases markedly with persistence.
+For the deterministic OR-Tools route, mean tardiness increases from
+$13.42$ at $\eta=0$ to $17.19$ at $\eta=0.70$, while
+$\CVaR_{0.95}$ of total tardiness increases from $60.74$ to $113.24$.
+Across the ten paired repetitions, the increase in OR-Tools tail tardiness
+between $\eta=0$ and $\eta=0.70$ is
+\begin{equation}
+	\Delta\CVaR_{0.95}
+	=
+	52.503,
+	\qquad
+	95\%~\mathrm{CI}
+	=
+	[49.140,\;55.932],
+\end{equation}
+with all ten paired differences positive
+(exact two-sided sign-flip $p=0.00195$).
+Mean tardiness increases by $3.771$ minutes
+($95\%$ CI $[3.408,4.125]$, $p=0.00195$).
+
+A detectable increase already occurs at the nominal persistence level:
+relative to $\eta=0$, OR-Tools $\CVaR_{0.95}$ increases by $12.777$ at
+$\eta=0.35$, again with all ten paired contrasts positive
+($p=0.00195$).
+
+Figure~\ref{fig:tailrisk_persistence} visualizes the resulting upper-tail increase.
+Table~\ref{tab:persistence_routing} shows the corresponding aggregate
+performance of the three preoperational routing strategies at selected
+persistence levels.
+
+\begin{table*}[t]
+	\centering
+	\caption{Routing performance under the mean-environmental-impact-matched
+		persistence control. Values are averages over ten paired repetitions.
+		$J_{\mathrm{CVaR}}=D+2\CVaR_{0.95}(Z)$.}
+	\label{tab:persistence_routing}
+		\footnotesize
+	\begin{tabular}{llrrrr}
+		\toprule
+		$\eta$ &
+		Method &
+		Distance &
+		Mean tardiness &
+		$\CVaR_{0.95}$ tardiness &
+		$J_{\mathrm{CVaR}}$ \\
+		\midrule
+		0.00 &
+		OR-Tools &
+		367.20 & 13.415 & 60.741 & 488.682 \\
+		&
+		ALNS-Mean &
+		371.76 & 1.550 & 15.780 & 403.320 \\
+		&
+		ALNS-CVaR &
+		376.62 & 0.599 & 8.228 & 393.075 \\
+		\midrule
+		0.35 &
+		OR-Tools &
+		367.20 & 14.249 & 73.518 & 514.236 \\
+		&
+		ALNS-Mean &
+		373.28 & 1.468 & 16.580 & 406.441 \\
+		&
+		ALNS-CVaR &
+		378.22 & 0.801 & 8.701 & 395.622 \\
+		\midrule
+		0.70 &
+		OR-Tools &
+		367.20 & 17.187 & 113.244 & 593.688 \\
+		&
+		ALNS-Mean &
+		373.95 & 2.924 & 33.443 & 440.836 \\
+		&
+		ALNS-CVaR &
+		378.21 & 1.872 & 21.612 & 421.434 \\
+		\bottomrule
+	\end{tabular}
+\end{table*}
+
+The increase in tail risk cannot be attributed simply to a larger average
+environmental multiplier. For the unchanged OR-Tools route, for example, the
+route-sampled mean travel-time multiplier is approximately $1.0483$ at
+$\eta=0$ and $1.0458$ at $\eta=0.70$, despite the sharp increase in
+$\CVaR_{0.95}$. This pattern implicates the temporal concentration of
+disruption exposure rather than a larger average route-level multiplier.
+
+The relative advantage of CVaR-oriented search does not, however, increase
+robustly with persistence. Define
+\[
+G(\eta)
+=
+J_{\mathrm{CVaR}}(\text{ALNS-Mean})
+-
+J_{\mathrm{CVaR}}(\text{ALNS-CVaR}).
+\]
+Although the point estimate increases between $\eta=0$ and $\eta=0.70$,
+the paired interaction contrast is
+\begin{equation}
+	G(0.70)-G(0)
+	=
+	9.157,
+	\qquad
+	95\%~\mathrm{CI}
+	=
+	[-15.230,\;33.310],
+\end{equation}
+with six positive and four negative paired differences
+($p=0.494$).
+Persistence therefore produces a strong direct increase in tail risk, but the
+present data do not support the stronger claim that persistence systematically
+amplifies the \emph{relative} benefit of CVaR-oriented search.
+
+% ------------------------------------------------------------
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.667\textwidth]{figures/main/pdf/Fig3_tailrisk_persistence_v3.pdf}
+\caption{\textbf{Routing tail risk under the mean-environmental-impact-matched persistence control.} Upper-tail tardiness rises strongly with persistence even though the continuous-time mean environmental travel-time multiplier is matched across regimes. OR-Tools uses the same deterministic route across persistence levels; ALNS-Mean and ALNS-CVaR use the same adaptive search engine but optimize different risk functionals. Values are averages over ten paired repetitions.}
+\label{fig:tailrisk_persistence}
+\end{figure}
+
+\subsection{CVaR-oriented ALNS improves tail-risk performance across all nine days}
+\label{subsec:results_nineday}
+% ------------------------------------------------------------
+
+The principal cross-instance comparison evaluates ALNS-Mean and ALNS-CVaR
+under the nominal disruption configuration on all nine Athens-derived
+operational days.
+The two methods use the same adaptive search engine, initial routes,
+neighbourhoods, stochastic search budget, and held-out test scenarios.
+Only the risk functional used during optimization differs.
+
+The result is highly consistent across instances.
+Table~\ref{tab:nineday_gains} reports the day-level paired gains, after averaging
+the three optimization repetitions within each day.
+Positive values favor ALNS-CVaR.
+
+\begin{table}[t]
+	\centering
+	\caption{Day-level gains of ALNS-CVaR relative to ALNS-Mean under the nominal
+		persistent-disruption configuration. Positive values favor CVaR-oriented
+		optimization.}
+	\label{tab:nineday_gains}
+	\begin{tabular}{rrr}
+		\toprule
+		Day &
+		$\Delta J_{\mathrm{CVaR}}$ &
+		$\Delta\CVaR_{0.95}(Z)$ \\
+		\midrule
+		1 & 10.545 &  6.789 \\
+		2 &  4.960 &  4.097 \\
+		3 &  1.832 &  1.483 \\
+		4 & 11.609 & 12.555 \\
+		5 &  1.773 &  5.570 \\
+		6 &  8.968 &  4.801 \\
+		7 & 10.856 &  9.428 \\
+		8 & 13.562 & 11.531 \\
+		9 & 13.396 &  9.231 \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+For the tail-oriented objective,
+\begin{equation}
+	\overline{\Delta J_{\mathrm{CVaR}}}
+	=
+	8.611,
+\end{equation}
+with day-level standard deviation $4.628$, median $10.545$, and bootstrap
+$95\%$ confidence interval
+\begin{equation}
+	[5.662,\;11.314].
+\end{equation}
+All nine day-level contrasts are positive, giving an exact two-sided sign-flip
+$p=0.00391$.
+
+The same cross-instance consistency is observed directly for tail tardiness:
+\begin{equation}
+	\overline{\Delta\CVaR_{0.95}(Z)}
+	=
+	7.276,
+\end{equation}
+with standard deviation $3.663$, median $6.789$, and bootstrap $95\%$
+confidence interval
+\begin{equation}
+	[5.027,\;9.522].
+\end{equation}
+Again, all nine day-level contrasts favor ALNS-CVaR
+($p=0.00391$).
+
+Aggregating descriptively across the nine days, ALNS-CVaR attains mean distance
+$406.55$, mean tardiness $1.92$, tail tardiness $15.84$, and on-time service
+fraction $0.9945$. The corresponding ALNS-Mean values are $400.61$, $3.24$,
+$23.12$, and $0.9911$, respectively. Thus CVaR optimization accepts a modest
+increase in route distance---approximately $5.94$ distance units on average---in
+exchange for lower mean and substantially lower upper-tail tardiness.
+
+This trade-off is reflected in the aligned tail-risk objective:
+the average $J_{\mathrm{CVaR}}$ is $438.23$ for ALNS-CVaR compared with
+$446.85$ for ALNS-Mean. The deterministic OR-Tools route is shorter on average
+($398.87$), but produces substantially greater mean tardiness ($11.28$) and
+tail tardiness ($47.39$), yielding average
+$J_{\mathrm{CVaR}}=493.65$.
+
+Figure~\ref{fig:crossday_cvar} shows the day-level consistency of both prespecified contrasts.
+The nine-day result is therefore not that CVaR optimization dominates every
+individual performance component. Rather, it consistently trades a small
+distance increase for a sufficiently large reduction in upper-tail service
+failure to improve the prespecified risk-oriented objective on every operational
+day.
+
+% ------------------------------------------------------------
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/main/pdf/Fig4_crossday_v3.pdf}
+\caption{\textbf{Cross-instance gains from explicit CVaR-oriented planning.} Day-level contrasts compare ALNS-Mean with ALNS-CVaR after averaging the three paired optimization repetitions within each operational day; positive values favour CVaR-oriented search. (a) The aligned tail-risk objective improves on all nine days. (b) $\mathrm{CVaR}_{0.95}$ tardiness likewise improves on all nine days. The diamond and dashed vertical line report the across-day mean; the horizontal bar is the bootstrap 95\% confidence interval.}
+\label{fig:crossday_cvar}
+\end{figure*}
+
+\subsection{Learned operator selection does not provide a robust incremental advantage}
+\label{subsec:results_rl}
+% ------------------------------------------------------------
+
+The Day~1 learning experiment evaluates whether feed-forward or recurrent
+operator selection improves on the genuine adaptive ALNS backbone when the
+online stochastic search budget is held fixed.
+
+Table~\ref{tab:rl_day1} reports the ten-repetition source-day results.
+For mean-oriented optimization, the three methods produce closely overlapping
+performance. For CVaR-oriented optimization, the learned policies have somewhat
+lower point estimates of the aligned objective than ALNS-CVaR, but the
+between-method uncertainty remains substantial.
+
+\begin{table*}[t]
+	\centering
+	\caption{Day~1 source-instance learning results over ten paired repetitions.
+		Values are mean $\pm$ standard deviation. The final column reports the objective
+		aligned with the criterion being optimized: $J_{\mathrm{mean}}$ for
+		mean-oriented rows and $J_{\mathrm{CVaR}}$ for CVaR-oriented rows.}
+	\label{tab:rl_day1}
+		\footnotesize
+	\begin{tabular}{llrrr}
+		\toprule
+		Criterion &
+		Method &
+		Mean tardiness &
+		$\CVaR_{0.95}$ tardiness &
+		Aligned objective \\
+		\midrule
+		Mean &
+		ALNS &
+		$1.440\pm1.017$ &
+		$17.407\pm10.885$ &
+		$374.970\pm3.240$ \\
+		&
+		RL-FF &
+		$1.783\pm1.489$ &
+		$19.082\pm14.064$ &
+		$375.585\pm3.629$ \\
+		&
+		RL-GRU &
+		$1.355\pm0.951$ &
+		$16.322\pm10.320$ &
+		$375.479\pm3.225$ \\
+		\midrule
+		CVaR &
+		ALNS &
+		$0.812\pm0.685$ &
+		$9.413\pm5.879$ &
+		$396.437\pm13.213$ \\
+		&
+		RL-FF &
+		$0.515\pm0.334$ &
+		$7.785\pm3.995$ &
+		$393.670\pm12.277$ \\
+		&
+		RL-GRU &
+		$0.708\pm0.741$ &
+		$8.501\pm7.323$ &
+		$393.181\pm15.841$ \\
+		\bottomrule
+	\end{tabular}
+\end{table*}
+
+Figure~\ref{fig:rl_validation} places these source-day point estimates beside the separate offline training burden.
+The paired contrasts do not establish a robust advantage of either learned
+policy over adaptive ALNS: the corresponding confidence intervals include zero.
+Likewise, learned operator selection does not significantly outperform the
+uniform operator-selection control under the matched search budget; the
+associated source-day comparisons all have $p>0.59$.
+
+The lack of a source-day significance result is reinforced by the zero-shot
+transfer experiment.
+Policies trained only on Day~1 are applied without fine-tuning to Days~2--9.
+Across the four prespecified learned-versus-uniform contrasts---feed-forward and
+GRU policies under mean- and CVaR-oriented objectives---none remains significant
+after Holm correction at the target-day level.
+
+These results do not imply that learning-based operator selection is generally
+ineffective. They show instead that, under the present state representation,
+training protocol, and matched online-search budget, the learned selectors do
+not demonstrate a reproducible incremental advantage over either genuine
+adaptive ALNS or simple uniform operator selection.
+
+The recurrent policy also fails to exhibit a consistent advantage over the
+feed-forward alternative. Thus, although the environment contains temporal
+persistence, recurrence itself does not guarantee improved search control once
+the relevant environmental and route-exposure summaries are already represented
+in the observable state.
+
+This conclusion is especially relevant when computational cost is considered.
+Training one policy requires approximately $2.3\times10^5$ scenario
+evaluations, around $9$--$10$ times the stochastic evaluation cost of a single
+frozen-policy search. The offline learning cost therefore represents a
+substantial additional expenditure that is not justified by a corresponding
+robust performance gain in the present experiments.
+
+% ------------------------------------------------------------
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/main/pdf/Fig5_RL_v3.pdf}
+\caption{\textbf{Source-day performance and computational burden of learned operator selection.} (a,b) Points show the mean aligned objective and error bars one standard deviation over ten paired Day~1 repetitions; the dotted line marks the ALNS mean. These panels summarize descriptive source-day variability; the paired inferential comparisons reported in the text do not establish a robust learned-policy advantage. (c) Offline policy fitting requires approximately $2.3\times10^5$ scenario evaluations per policy, about 9.2 times the stochastic evaluation budget of one frozen-policy search.}
+\label{fig:rl_validation}
+\end{figure*}
+
+\subsection{Sequential DDDAS acts as selective rather than systematic recourse}
+\label{subsec:results_dddas}
+% ------------------------------------------------------------
+
+The confirmatory DDDAS experiment evaluates sequential recourse on Days~2, 5,
+and 7 using $180$ paired static-versus-DDDAS executions.
+These correspond to $60$ unique day--environment combinations, with three
+frozen preoperational ALNS-CVaR route replicates evaluated against each
+realized environmental trajectory.
+
+Table~\ref{tab:dddas_scientific} reports the principal paired outcomes after
+first averaging the three route replicates within each day--realized-path unit.
+Positive differences favor DDDAS.
+
+\begin{table*}[t]
+	\centering
+	\caption{Sequential DDDAS realized-performance contrasts. Values are means over
+		20 realized environmental paths after averaging the three frozen
+		preoperational-route replicates within each path. Parentheses give
+		path-bootstrap $95\%$ confidence intervals. Positive values favor DDDAS.}
+	\label{tab:dddas_scientific}
+		\footnotesize
+	\begin{tabular}{rrrr}
+		\toprule
+		Day &
+		$\Delta J_{\mathrm{realized}}$ &
+		$\Delta Z_{\mathrm{realized}}$ &
+		$\Delta D_{\mathrm{realized}}$ \\
+		\midrule
+		2 &
+		$-0.169\;[-0.472,\;0.182]$ &
+		$ 0.058\;[0.000,\;0.173]$ &
+		$-0.285\;[-0.505,\;-0.087]$ \\
+		5 &
+		$ 0.087\;[-0.377,\;0.549]$ &
+		$ 0.056\;[-0.131,\;0.257]$ &
+		$-0.025\;[-0.300,\;0.202]$ \\
+		7 &
+		$ 0.122\;[-1.481,\;2.200]$ &
+		$ 0.416\;[-0.298,\;1.396]$ &
+		$-0.710\;[-1.100,\;-0.372]$ \\
+		\bottomrule
+	\end{tabular}
+\end{table*}
+
+There is no systematic improvement in the realized composite objective.
+The mean of the three day-level $\Delta J$ values is only $0.013$, with
+Day~2 favoring static execution and Days~5 and 7 showing small positive mean
+differences whose bootstrap intervals include zero.
+
+Distance displays a clearer pattern.
+DDDAS increases realized distance on average on all three days:
+\[
+\Delta D
+=
+-0.285,\;-0.025,\;-0.710
+\]
+for Days~2, 5, and 7, respectively.
+For Days~2 and 7, the entire path-bootstrap interval is below zero.
+Mean tardiness moves in the opposite direction on all three days, but the
+estimated improvements are small relative to their uncertainty.
+
+Day~7 illustrates the distinction particularly clearly.
+Its mean realized objective difference is slightly positive
+($0.122$), whereas the median is negative ($-0.033$).
+A leave-one-realized-path-out sensitivity analysis gives
+$\Delta J$ means ranging from $-0.717$ to $0.575$.
+The positive mean is therefore strongly influenced by a rare path on which
+DDDAS avoids substantial tardiness. No observation is removed from the reported
+analysis; the leave-one-out calculation is used only to characterize
+sensitivity of the descriptive mean.
+
+% ------------------------------------------------------------
+\subsection{Most DDDAS triggers leave the incumbent route unchanged}
+\label{subsec:results_dddas_operations}
+% ------------------------------------------------------------
+
+The online mechanism is markedly conservative in its actual routing actions.
+Across the 180 sequential executions, the controller performs 523 recourse
+attempts but only 87 result in a route modification:
+\begin{equation}
+	\frac{87}{523}
+	=
+	16.6\%.
+\end{equation}
+The remaining attempts retain the incumbent residual route.
+
+At the run level, 115 of the 180 static--DDDAS comparisons contain no route
+change at all. For these 115 runs, static and DDDAS distance, tardiness, and
+realized objective are identical to numerical precision.
+Only 65 runs contain one or more actual route changes.
+
+Table~\ref{tab:dddas_operational} summarizes the operational behavior by day.
+
+\begin{table}[t]
+	\centering
+	\caption{Operational behavior of the bounded DDDAS controller.}
+	\label{tab:dddas_operational}
+	\begin{tabular}{rrrrrr}
+		\toprule
+		Day &
+		Runs &
+		Episodes &
+		Attempts &
+		Changes &
+		Cap terminations \\
+		\midrule
+		2 & 60 & 110 & 151 & 24 & 62 \\
+		5 & 60 & 151 & 199 & 23 & 83 \\
+		7 & 60 & 130 & 173 & 40 & 49 \\
+		\midrule
+		Total &
+		180 & 391 & 523 & 87 & 194 \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+The $25{,}000$-operator-decision cap is reached in 194 attempts,
+or $37.1\%$ of all recourse attempts.
+Only three of these capped searches ultimately produce a route change.
+Thus, in the great majority of cap-limited residual states, the bounded search
+exhausts its operator-decision budget without identifying a suffix that
+improves sufficiently on the incumbent conditional objective.
+
+Across all 523 recourse attempts, the sequential experiment performs
+$8{,}393{,}300$ conditional scenario evaluations.
+Total measured DDDAS execution time over the 180 runs is $0.387$ hours on the
+reported computational platform, corresponding to approximately $7.74$ seconds
+per complete run on average. These timings reflect the optimized sequential
+implementation used for the confirmatory experiment.
+
+The controller also frequently modifies a later part of the route rather than
+the immediately following arc. Only 19 of the 87 executed route modifications
+change the next customer visited at the decision epoch. The remaining changes
+preserve the immediate next node and modify a later portion of the residual
+suffix.
+
+These observations reinforce the operational interpretation of the OMI trigger:
+crossing the threshold initiates \emph{reconsideration} of the current route,
+not compulsory rerouting.
+
+% ------------------------------------------------------------
+\subsection{Conditional risk improvement does not imply realized-cost improvement}
+\label{subsec:results_exante_expost}
+% ------------------------------------------------------------
+
+The sequential logs permit direct comparison between the objective used when a
+rerouting decision is made and the subsequently realized outcome.
+
+All 87 executed route modifications satisfy
+\begin{equation}
+	G_{t_0}
+	=
+	\widehat{J}_{\CVaR}
+	(r^{\mathrm{inc}}_{t_0})
+	-
+	\widehat{J}_{\CVaR}
+	(r^{\mathrm{sel}}_{t_0})
+	>
+	0,
+\end{equation}
+so every executed change improves the local conditional CVaR objective on the
+decision-time scenario bank.
+
+This consistency does not translate into guaranteed ex-post improvement.
+Among the 65 complete executions containing at least one route modification,
+the final realized composite objective favors DDDAS in 18 runs, is equal within
+a numerical tolerance of $10^{-12}$ in 3 runs, and favors static execution in
+44 runs.
+
+Therefore,
+\begin{equation}
+	G_{t_0}>0
+	\quad\not\Rightarrow\quad
+	J_{\mathrm{DDDAS,realized}}
+	<
+	J_{\mathrm{static,realized}}.
+\end{equation}
+
+This is not a contradiction between the optimization and evaluation criteria.
+The first quantity compares two residual routes over a conditional distribution
+of possible future trajectories at the decision epoch. The second compares the
+two policies after one particular future trajectory has been realized.
+A route that reduces conditional tail risk can therefore incur a distance
+premium without receiving the corresponding insurance benefit on a specific
+realization.
+
+Consistently with this interpretation, there is no stable descriptive
+relationship across the three days between the magnitude of the local
+conditional search gain and the final realized objective difference.
+The sequential results are therefore better characterized as evidence of
+\emph{selective risk-sensitive recourse} than as evidence of systematic
+realized-cost improvement.
+
+% ------------------------------------------------------------
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/main/pdf/Fig6_DDDAS_v3.pdf}
+\caption{\textbf{Realized effects and operational selectivity of causal DDDAS recourse.} Static-minus-DDDAS contrasts are shown for (a) realized composite objective, (b) realized tardiness and (c) realized distance; positive values favour DDDAS. Points are means over 20 realized environmental paths after averaging the three frozen route replicates; error bars are path-bootstrap 95\% confidence intervals. (d) Attempt-level and run-level outcomes are shown as proportions of their own denominators. Only 87 of 523 recourse attempts modify a route, and 115 of 180 complete runs contain no route change. Every executed route modification improves the local conditional search objective, but realized full-run cost does not improve systematically: among the 65 changed runs, 18 improve, 3 tie within $10^{-12}$, and 44 worsen relative to static execution.}
+\label{fig:dddas}
+\end{figure*}
+
+\subsection{Integrated interpretation}
+\label{subsec:results_integrated}
+% ------------------------------------------------------------
+
+Figure~\ref{fig:dddas} summarizes the realized DDDAS contrasts and its strong operational selectivity.
+Taken together, the experiments separate three effects that would otherwise be
+easy to conflate.
+
+First, temporal persistence has an independent operational consequence:
+even after controlling the continuous-time mean environmental travel-time
+multiplier, greater clustering substantially increases upper-tail tardiness.
+
+Second, explicitly accounting for this tail risk at the preoperational planning
+stage produces the most robust algorithmic improvement observed in the study.
+ALNS-CVaR improves both the aligned tail-risk objective and
+$\CVaR_{0.95}$ tardiness relative to ALNS-Mean on all nine operational days.
+
+Third, additional algorithmic complexity does not automatically yield further
+benefit. Learned operator selection does not robustly outperform adaptive or
+uniform operator selection under the matched evaluation protocol, and causal
+DDDAS recourse does not systematically reduce realized composite cost despite
+making locally risk-improving decisions whenever a route modification is
+executed.
+
+The resulting empirical picture is therefore not one of uniform algorithmic
+dominance. Rather, the strongest evidence supports explicit
+\emph{risk-aware preoperational planning}, while recurrent learning and online
+recourse provide adaptive mechanisms whose incremental value is more
+instance- and realization-dependent.
+
+
+
+
+
+% ============================================================
+\section{Discussion}
+\label{sec:discussion}
+% ============================================================
+
+The results support a differentiated view of routing under persistent
+disruptions. Temporal persistence matters, but its operational consequences do
+not arise simply because average travel times become larger. Explicit
+tail-risk optimization provides the clearest and most reproducible improvement
+across operational instances, whereas learned search control and online
+recourse provide more conditional benefits. This distinction is important
+because the three mechanisms address different stages of the decision process:
+the disruption model characterizes the environment, CVaR-oriented routing
+shapes the preoperational plan, and DDDAS provides state-dependent recourse
+during execution.
+
+% ------------------------------------------------------------
+\subsection{Why persistence matters even when average impact is controlled}
+\label{subsec:discussion_persistence}
+% ------------------------------------------------------------
+
+The persistence experiments show that upper-tail service risk depends on the
+\emph{temporal organization} of disruption, not only on its average magnitude.
+When the Hawkes branching ratio increases while the stationary mean event rate
+is held fixed, disruption activity becomes increasingly clustered: quiet
+periods become longer, but disruption episodes become more concentrated.
+
+The stricter mean-impact-matched control reinforces this interpretation.
+Even after matching the continuous-time mean environmental travel-time
+multiplier across persistence regimes, tail tardiness increases substantially
+with $\eta$. For the unchanged OR-Tools route, for example,
+$\CVaR_{0.95}$ of tardiness rises from approximately $60.7$ to $113.2$
+between $\eta=0$ and $\eta=0.70$, even though the route-sampled mean travel-time
+multiplier does not increase.
+
+This result illustrates why an average-delay representation can be insufficient
+for operational reliability analysis. Two disruption environments with similar
+mean impact may generate very different service outcomes if one distributes
+delay diffusely over time and the other concentrates it into bursts that arrive
+when route slack is already limited.
+
+The mechanism should not be interpreted as feedback from the route into the
+Hawkes process. The disruption process remains exogenous. What changes is the
+interaction between a temporally clustered environment and the schedule
+recursion of the route. Once an early delay changes subsequent departure times,
+later arcs may encounter the same external disruption trajectory at less
+favorable points in the schedule. Persistence and schedule propagation can
+therefore reinforce one another operationally without constituting a
+route-to-environment feedback loop.
+
+% ------------------------------------------------------------
+\subsection{Tail-risk optimization is more robust than mean optimization}
+\label{subsec:discussion_cvar}
+% ------------------------------------------------------------
+
+The most consistent algorithmic result is the advantage of explicitly
+optimizing the upper tail of tardiness. ALNS-CVaR improves both the aligned
+tail-risk objective and $\CVaR_{0.95}$ tardiness relative to ALNS-Mean on all
+nine operational days.
+
+The gain is not free. CVaR-oriented solutions travel somewhat farther on
+average. This is precisely the trade-off expected from risk-sensitive routing:
+additional spatial cost is accepted in exchange for routes whose schedules are
+less exposed to severe service failures under unfavorable stochastic
+realizations.
+
+Importantly, the evidence does not support the stronger claim that increasing
+persistence necessarily makes CVaR optimization progressively more valuable
+relative to mean optimization. Persistence strongly increases tail risk, but
+the interaction
+\[
+G(0.70)-G(0)
+\]
+is not statistically stable across paired repetitions. Thus, two conclusions
+should be separated:
+
+\[
+\text{persistence increases tail risk},
+\]
+
+which is strongly supported, and
+
+\[
+\text{persistence necessarily amplifies the relative CVaR-search advantage},
+\]
+
+which is not supported by the present data.
+
+This distinction is relevant for practice because it suggests that
+tail-sensitive planning can be useful even before the environment reaches an
+extreme persistence regime. The value of CVaR does not depend on demonstrating
+a monotone interaction with the Hawkes branching ratio; it arises from
+protecting service performance against adverse realizations across heterogeneous
+operating days.
+
+% ------------------------------------------------------------
+\subsection{Learning does not automatically improve adaptive search}
+\label{subsec:discussion_rl}
+% ------------------------------------------------------------
+
+The learning experiments provide a useful counterpoint to the risk-optimization
+results. Neither the feed-forward nor recurrent policy demonstrates a robust
+incremental advantage over genuine adaptive ALNS, and neither consistently
+outperforms a uniform operator-selection control under the matched online-search
+budget.
+
+This result matters because temporal persistence can make recurrent learning
+architectures appear conceptually attractive. In the present setting, however,
+the observable state already contains stochastic tardiness summaries, capacity
+utilization, and route-dependent OMI exposure. A recurrent hidden state may
+therefore add limited information beyond these explicit state variables.
+
+The zero-shot transfer experiment further indicates that operator-selection
+patterns learned on one operational day are not automatically portable to
+other days. This does not imply that reinforcement learning is unsuitable for
+vehicle-routing search. Rather, it shows that the added complexity of learning
+requires empirical justification under controlled baselines, especially when
+offline training cost is substantial.
+
+This qualification is particularly important in applied routing systems.
+A learned component should not be regarded as operationally superior merely
+because it is more sophisticated than an adaptive heuristic. If a trained policy
+does not provide stable gains beyond simpler controls, then the additional
+training, maintenance, and validation burden becomes part of the deployment
+decision.
+
+% ------------------------------------------------------------
+\subsection{Sequential recourse: conditional improvement versus realized outcome}
+\label{subsec:discussion_dddas}
+% ------------------------------------------------------------
+
+The DDDAS experiment reveals a second distinction that is central to
+risk-sensitive online decision making.
+
+Every executed route modification improves the local conditional search
+objective on the decision-time scenario bank. Nevertheless, among complete runs
+containing at least one route change, realized composite cost improves in only a
+minority of cases.
+
+This apparent tension is a natural consequence of stochastic optimization.
+At a decision time $t_0$, the controller compares residual routes over a
+conditional distribution of possible futures. The selected route is preferable
+with respect to this distributional criterion. Execution then reveals only one
+future trajectory. A decision that reduces conditional tail risk may therefore
+incur additional distance in a realization where the adverse future against
+which it provided protection does not occur.
+
+In this sense, online CVaR recourse resembles an insurance decision more than a
+deterministic shortest-path correction. The decision may be rational ex ante
+even when its insurance premium---typically additional distance---is not repaid
+in the subsequently realized trajectory.
+
+The Day~7 results illustrate this mechanism particularly clearly. The mean
+realized objective difference is slightly favorable to DDDAS, but the median is
+slightly unfavorable and the mean is sensitive to a rare high-consequence
+trajectory in which substantial tardiness is avoided. Such events are precisely
+the type of outcome that tail-sensitive control is designed to protect against,
+but they also imply that average realized gains can be highly variable in
+finite samples.
+
+The operational logs reinforce the selective nature of the controller.
+Only $16.6\%$ of recourse attempts result in a route modification, and
+approximately $37.1\%$ of attempts reach the bounded operator-decision limit.
+Moreover, most executed changes do not alter the immediately following
+customer. The DDDAS layer should therefore be interpreted as a mechanism for
+selective residual-plan reconsideration rather than continual reactive
+rerouting.
+
+% ------------------------------------------------------------
+\subsection{Managerial implications}
+\label{subsec:managerial}
+% ------------------------------------------------------------
+
+Several managerial implications follow from these results.
+
+First, route planning under persistent disruption should not be based solely on
+average travel-time inflation. The persistence experiments show that two
+operating environments with comparable mean travel-time impact can generate
+substantially different tail-risk profiles. Managers concerned with service
+reliability should therefore monitor not only the magnitude of congestion or
+delay, but also its temporal concentration and persistence.
+
+Second, the strongest operational evidence favors incorporating tail risk into
+the \emph{preoperational} routing decision. The nine-day comparison shows that
+CVaR-oriented ALNS consistently sacrifices a limited amount of distance to
+reduce severe tardiness. For delivery systems in which late service carries
+disproportionate contractual, reputational, or downstream operational cost,
+this trade-off may be preferable to minimizing expected tardiness or route
+length alone.
+
+Third, online replanning should not be interpreted as an obligation to change a
+route whenever conditions deteriorate. In the confirmatory DDDAS experiment,
+most triggers do not lead to a route modification. This is operationally
+desirable: unnecessary rerouting can create driver confusion, invalidate
+customer communications, increase dispatch workload, and consume computational
+resources without improving service.
+
+A useful implementation principle is therefore
+\[
+\text{detect} \rightarrow
+\text{evaluate} \rightarrow
+\text{change only if justified},
+\]
+rather than
+\[
+\text{detect} \rightarrow
+\text{reroute automatically}.
+\]
+
+The DDDAS architecture supports precisely this distinction.
+
+% ------------------------------------------------------------
+\subsection{Implications for human-in-the-loop planning}
+\label{subsec:human_loop}
+% ------------------------------------------------------------
+
+The selective behavior of the online controller also suggests a natural role
+for human-in-the-loop decision support.
+
+In many delivery operations, dispatchers and drivers retain responsibility for
+route changes because optimization systems do not observe every operational
+constraint. Temporary road restrictions, parking availability, customer
+preferences, driver familiarity, and informal local knowledge may not be
+represented explicitly in the routing model.
+
+A memory-aware DDDAS layer can therefore be used as a \emph{decision-support
+	filter} rather than as a fully autonomous rerouting system. A high-OMI episode
+can flag that the current schedule is operating under elevated persistent
+disruption, while conditional suffix optimization can quantify whether an
+alternative route appears materially preferable.
+
+This creates at least three possible levels of automation:
+\begin{enumerate}
+	\item \emph{advisory mode}: the system reports elevated disruption state and
+	candidate alternatives to a dispatcher;
+	
+	\item \emph{confirmation mode}: the system proposes a reroute only when the
+	conditional risk improvement exceeds a specified operational threshold, but
+	a human approves execution;
+	
+	\item \emph{autonomous mode}: residual routes are modified automatically
+	under preauthorized operating rules.
+\end{enumerate}
+
+The results favor a cautious progression across these levels.
+Because a conditional improvement does not guarantee a lower realized cost,
+decision interfaces should communicate the nature of the gain explicitly.
+For example, presenting a recommendation as ``lower predicted tail risk'' is
+more informative than presenting it as ``better route.''
+
+This distinction may improve operator trust by aligning the system's
+recommendation with the uncertainty actually being optimized.
+
+% ------------------------------------------------------------
+\subsection{Strategic implications for service-level agreements}
+\label{subsec:sla}
+% ------------------------------------------------------------
+
+The results also have implications for service-level agreements (SLAs) and
+contract design.
+
+Many logistics contracts are framed around thresholds such as delivery within a
+time window, maximum allowed delay, or penalties applied once lateness exceeds a
+specified level. Such contracts are intrinsically tail-sensitive even when the
+underlying routing system is optimized for average cost.
+
+A mean-oriented routing policy can therefore be misaligned with the economic
+structure of the service agreement. Two routing plans with similar expected
+tardiness may have very different probabilities of severe delay or very
+different upper-tail losses.
+
+CVaR provides a natural operational bridge between these two levels.
+Although it is not itself an SLA metric, optimizing
+$\CVaR_{0.95}$ explicitly penalizes the subset of scenarios in which service
+degradation is most severe. This can be particularly relevant when lateness
+cost is nonlinear or when a small number of severe failures dominate customer
+dissatisfaction.
+
+The nine-day results suggest that this form of protection can be obtained with a
+moderate distance premium. The practical question for an operator is therefore
+not simply whether the CVaR route is longer, but whether the additional routing
+cost is smaller than the expected economic consequence of severe SLA failure.
+
+This interpretation also suggests that the objective weight $\lambda_T$ should
+ultimately be linked to business-specific service economics rather than treated
+as a universal constant. The present experiments use a fixed common value to
+enable controlled algorithmic comparison; deployment would require calibration
+against actual penalty structures and service priorities.
+
+% ------------------------------------------------------------
+\subsection{Memory-aware decision support as an anticipatory paradigm}
+\label{subsec:anticipatory}
+% ------------------------------------------------------------
+
+The concept of memory-aware decision support remains useful, but its meaning
+should be stated carefully.
+
+In the present model, ``memory'' does not imply that realized vehicle delays
+feed back into the disruption process, nor does it imply an intrinsically
+infinite-dimensional non-Markovian system. For the exponential Hawkes kernel,
+the relevant disruption history is summarized by the current excitation state
+$m(t)$.
+
+The anticipatory value comes instead from using that state to distinguish two
+environments that may look similar instantaneously but have different recent
+histories and therefore different near-term event intensity.
+
+A conventional reactive system asks:
+\[
+\text{What is the current travel condition?}
+\]
+
+A memory-aware system additionally asks:
+\[
+\begin{gathered}
+\text{What does the recent disruption history imply about}\\
+\text{the current persistence state?}
+\end{gathered}
+\]
+
+This shift is modest mathematically but potentially important operationally.
+The OMI is not a forecast that a specific future incident will occur.
+Rather, it is a compact state variable that summarizes how strongly recent
+events contribute to present disruption intensity.
+
+The resulting decision paradigm is therefore \emph{anticipatory but not
+	clairvoyant}. It uses observed history to update the distribution of possible
+futures while preserving causal information constraints.
+
+This distinction is especially relevant for DDDAS.
+The sequential controller does not inspect the realized future trajectory.
+At each departure epoch, it reconstructs a conditional future from the observed
+event prefix and completed travel times. The controller can therefore adapt to
+the evolving disruption state without relying on retrospective information.
+
+% ------------------------------------------------------------
+\subsection{Implications for routing-system architecture}
+\label{subsec:architecture}
+% ------------------------------------------------------------
+
+Taken together, the experiments suggest a layered architecture for
+disruption-prone last-mile routing:
+\begin{equation}
+\boxed{\begin{gathered}
+\text{environmental-state estimation}\\[-1pt]
+\downarrow\\[-1pt]
+\text{risk-aware preoperational planning}\\[-1pt]
+\downarrow\\[-1pt]
+\text{selective online recourse}
+\end{gathered}}
+\end{equation}
+
+The first layer estimates the current persistent disruption state.
+The second constructs a route that is robust to adverse service outcomes before
+vehicles depart.
+The third reevaluates selected residual routes only when newly observed
+information makes reconsideration worthwhile.
+
+The empirical evidence in this study is strongest for the second layer.
+CVaR-oriented planning provides the most reproducible improvement across
+instances. The third layer contributes flexibility, but its incremental realized
+value is more variable and must be balanced against computational and
+organizational cost.
+
+This architecture also helps clarify the potential role of learning.
+RL need not replace the optimization layer. It can instead be introduced only
+where repeated operational experience demonstrates that learned search control
+adds value beyond adaptive heuristics. The present results indicate that such an
+advantage should be established empirically rather than assumed.
+
+% ------------------------------------------------------------
+\subsection{Limitations and scope of inference}
+\label{subsec:limitations}
+% ------------------------------------------------------------
+
+The study has several limitations that delimit the interpretation of the
+results.
+
+First, the operational instances are derived from real Athens delivery data,
+but the disruption process is experimental. The Hawkes parameters are not
+estimated from a historical database of Athens traffic incidents. The
+persistence experiments should therefore be interpreted as controlled stress
+tests rather than empirical estimates of disruption dynamics in Athens.
+
+Second, the tightened time windows and vehicle capacities are experimental
+design choices. They provide a common regime in which service reliability can
+be compared, but they are not claimed to reproduce the contractual or fleet
+configuration of the original operator.
+
+Third, the Hawkes model is univariate and spatially homogeneous at the
+environment level. Real urban disruption is likely to depend on location, road
+class, time of day, weather, incident type, and network interactions. A
+multivariate or spatially structured point process would provide a richer
+representation but would also require correspondingly richer calibration data.
+
+Fourth, the DDDAS optimizer performs local recourse on the residual suffix of
+the triggered vehicle while preserving customer assignment. It does not solve
+a full fleet-wide dynamic reassignment problem. Consequently, the online results
+quantify the value of computationally bounded local recourse rather than the
+upper bound obtainable from unrestricted dynamic reoptimization.
+
+Fifth, the deep sequential DDDAS experiment uses three prospectively selected
+representative days. The 20 realized paths per day characterize stochastic
+within-instance variability, but they do not create additional independent
+operational instances. Cross-instance conclusions therefore rely primarily on
+the nine-day preoperational analysis.
+
+Sixth, the learning results are conditional on the present state representation,
+policy architectures, and training protocol. Failure to observe a robust RL
+advantage should not be generalized to all learning-assisted vehicle-routing
+methods.
+
+Finally, the mean-impact-matched persistence control equalizes the
+continuous-time mean environmental multiplier, not the route-sampled multiplier
+for every method. Because route departure times differ, small differences in
+route-specific exposure remain possible and are part of the operational
+interaction between routing and the external disruption trajectory.
+
+These limitations point to several natural extensions, including spatial or
+multivariate disruption models, empirical calibration of persistence from
+incident or probe-vehicle data, heterogeneous fleets and service agreements,
+fleet-wide dynamic reassignment, and deployment studies in which dispatcher
+responses to risk-sensitive recommendations can be observed directly.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% ============================================================
+\section{Conclusions}
+\label{sec:conclusions}
+% ============================================================
+
+This study examined last-mile routing under temporally persistent disruptions
+by separating three distinct decision layers: the external disruption process,
+risk-aware preoperational planning, and causal online recourse.
+
+The first main result is that disruption persistence matters beyond average
+travel-time inflation. When the Hawkes branching ratio is increased while the
+stationary mean event rate is controlled, disruption activity becomes more
+temporally clustered. Under the stricter control that also matches the
+continuous-time mean environmental travel-time multiplier, upper-tail
+tardiness still increases substantially. Thus, routing reliability depends not
+only on the average magnitude of disruption but also on how disruption is
+organized over time.
+
+The second and strongest algorithmic result concerns preoperational risk-aware
+planning. Across all nine Athens-derived operational days,
+CVaR-oriented ALNS consistently improves both the aligned tail-risk objective
+and $\CVaR_{0.95}$ tardiness relative to mean-oriented ALNS. This improvement
+comes with a moderate increase in route distance, illustrating a clear
+reliability--efficiency trade-off rather than dominance across every individual
+performance measure. The results therefore support explicit tail-risk
+optimization when severe service delays carry disproportionate operational or
+contractual consequences.
+
+By contrast, additional learning complexity does not yield a robust incremental
+advantage in the present experiments. Feed-forward and recurrent
+operator-selection policies do not consistently outperform genuine adaptive
+ALNS or a uniform operator-selection control under matched online-search
+budgets, and zero-shot transfer to other operating days does not reveal a stable
+generalization benefit. Recurrence is therefore not automatically valuable
+simply because the disruption environment contains temporal persistence.
+
+The sequential DDDAS experiment provides a complementary result. Online recourse
+is highly selective: most disruption-triggered reconsiderations retain the
+incumbent residual route. Every executed route modification improves the local
+conditional risk objective at the decision epoch, but this conditional
+improvement does not imply lower realized cost on the single trajectory that
+subsequently occurs. The DDDAS layer should therefore be interpreted as bounded
+risk-sensitive recourse rather than as a mechanism that guarantees ex-post
+cost improvement.
+
+Taken together, the findings support a layered view of decision support under
+persistent disruption:
+\[
+\boxed{\begin{gathered}
+\text{persistent-state estimation}\\[-1pt]
+\downarrow\\[-1pt]
+\text{risk-aware preoperational routing}\\[-1pt]
+\downarrow\\[-1pt]
+\text{selective causal recourse}
+\end{gathered}}
+\]
+Among these layers, the most robust empirical evidence in the present study
+supports explicit CVaR-based planning. Learning-assisted search and dynamic
+replanning remain potentially useful extensions, but their incremental value is
+more dependent on instance structure, available information, and computational
+budget.
+
+Future work should focus on empirically calibrated spatial or multivariate
+disruption processes, heterogeneous fleets and service-level costs, richer
+fleet-wide dynamic reassignment, and deployment settings in which dispatcher or
+driver responses can be incorporated explicitly. Such extensions would allow
+the memory-aware framework developed here to move from controlled operational
+stress testing toward fully data-calibrated dynamic decision support.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% -------------------------------------------------
+% REFERENCES
+% -------------------------------------------------
+
+\bibliographystyle{elsarticle-harv} 
+\bibliography{cvrptw_references_revised}
+
+
+\end{document}

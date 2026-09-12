@@ -1,0 +1,11 @@
+level,category,count
+attempt,total,523
+attempt,changed,87
+attempt,capped,194
+attempt,changed_capped,3
+attempt,changed_positive_conditional_gain,87
+run,total,180
+run,with_change,65
+run,improve,18
+run,tie,3
+run,worsen,44

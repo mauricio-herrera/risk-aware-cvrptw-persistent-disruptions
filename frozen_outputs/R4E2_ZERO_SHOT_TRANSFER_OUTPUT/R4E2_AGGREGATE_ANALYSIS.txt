@@ -1,0 +1,48 @@
+==========================================================================================
+R4-E2 ZERO-SHOT RL CROSS-DAY AGGREGATE ANALYSIS
+==========================================================================================
+Transfer units             : 80/80 PASS
+Target training            : NONE
+Target validation          : NONE
+Target checkpoint selection: NONE
+Target gradient updates    : NONE
+Weight immutability        : PASS
+Search-budget gate         : PASS
+Contrast reconstruction    : PASS
+max reconstruction error   : 1.137e-13
+
+DAY-LEVEL CONTRASTS (10 source checkpoints averaged first)
+ target_day  FF_Mean_RL_minus_Uniform  GRU_Mean_RL_minus_Uniform  FF_CVaR_RL_minus_Uniform  GRU_CVaR_RL_minus_Uniform  GRU_minus_FF_Mean  GRU_minus_FF_CVaR
+          2                 -0.730718                  -0.765969                  7.270533                  -1.692289          -0.035251          -8.962822
+          3                  0.814776                   0.261925                  0.253317                   4.887982          -0.552851           4.634665
+          4                 -0.781662                  -2.947093                 -4.235452                  -0.783190          -2.165431           3.452263
+          5                  0.851802                   1.706313                  3.385711                  -1.767807           0.854511          -5.153518
+          6                  1.258064                   0.863700                  7.699004                  -1.008707          -0.394364          -8.707711
+          7                 -0.201696                  -0.416333                 12.984263                  11.735769          -0.214637          -1.248494
+          8                 -1.679195                  -1.117552                 -2.029978                   0.038344           0.561643           2.068322
+          9                 -2.574731                  -2.633344                 -1.144961                   2.055788          -0.058613           3.200750
+
+CO-PRIMARY CROSS-DAY TESTS (n=8 target days; negative favors RL)
+                 label      mean       sd    median  ci95_boot_lo  ci95_boot_hi  exact_signflip_p  holm_adjusted_p  negative_days_RL_or_GRU_better  ties  positive_days_RL_or_GRU_worse
+ FF Mean: RL - Uniform -0.380420 1.333575 -0.466207     -1.263506      0.461209          0.453125         0.914062                               5     0                              3
+GRU Mean: RL - Uniform -0.631044 1.611085 -0.591151     -1.682535      0.390378          0.304688         0.914062                               5     0                              3
+ FF CVaR: RL - Uniform  3.022805 5.886129  1.819514     -0.636432      6.935791          0.187500         0.750000                               3     0                              5
+GRU CVaR: RL - Uniform  1.683236 4.641459 -0.372423     -0.853799      5.059907          0.414062         0.914062                               4     0                              4
+
+SECONDARY ARCHITECTURE TESTS (negative favors GRU)
+         label      mean       sd    median  ci95_boot_lo  ci95_boot_hi  exact_signflip_p  negative_days_RL_or_GRU_better  ties  positive_days_RL_or_GRU_worse
+Mean: GRU - FF -0.250624 0.905865 -0.136625     -0.891469      0.277661          0.539062                               6     0                              2
+CVaR: GRU - FF -1.339568 5.578522  0.409914     -5.047379      2.115477          0.507812                               4     0                              4
+
+METHOD DESCRIPTIVES
+      method  n_target_days  distance_mean_km  tard_mean_min  tard_cvar95_mean_min  on_time_mean  J_aligned_mean  search_runtime_mean_s
+  RL-FF-CVaR              8         411.37375       2.301573             16.564336      0.993575      444.502423              23.319777
+  RL-FF-Mean              8         405.41000       3.462651             23.074265      0.990798      412.335302              27.430715
+ RL-GRU-CVaR              8         411.49000       2.190255             15.836427      0.993771      443.162854              24.026007
+ RL-GRU-Mean              8         405.44375       3.320464             22.475795      0.991013      412.084678              26.771513
+Uniform-CVaR              8         411.10500       2.103827             15.187309      0.993907      441.479618              23.808468
+Uniform-Mean              8         406.30000       3.207861             23.043905      0.991326      412.715722              26.528491
+
+==========================================================================================
+R4-E2 AGGREGATE ANALYSIS: PASS
+==========================================================================================

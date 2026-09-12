@@ -1,0 +1,15 @@
+{
+  "stage": "R5-H confirmatory execution",
+  "status": "COMPLETE",
+  "completed_utc": "2026-09-10T12:48:47.108273+00:00",
+  "expected_runs": 180,
+  "completed_runs": 180,
+  "unique_realized_environments": 60,
+  "conditional_scenarios": 100,
+  "protocol_sha256": "25c19798800f3c701cf74bfa2483dc9c5ef375311cdde0792d119dd0bf759e82",
+  "schedule_sha256": "b99f9dea833ec8ef177c7c62a72c021d6a51818d71701e186ef38e92bbc4228a",
+  "static_engine_sha256": "979b3ed460fa06125d64a17a4f69ff2285b1da0d4fbcb40e0d2a9aa9a32bb127",
+  "dddas_engine_sha256": "4312ae5cef7ab4a022913ab010da70aeb0c6927fde8dcac8b540935a34636878",
+  "cumulative_dddas_wall_seconds": 1392.4612446674728,
+  "performance_aggregation_performed": false
+}

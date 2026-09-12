@@ -1,0 +1,16 @@
+{
+  "stage": "R4-E1 nominal cross-day benchmark",
+  "day": 1,
+  "replicate": 1,
+  "seeds": {
+    "search": 143001,
+    "test": 144001,
+    "alns_mean": 152001,
+    "alns_cvar": 153001
+  },
+  "n_search": 100,
+  "n_test": 1000,
+  "expected_candidates": 250,
+  "expected_search_scenario_evals": 25100,
+  "overall_pass": true
+}

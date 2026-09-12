@@ -1,0 +1,2 @@
+768462c58d80c4b95cc0bfe16a3eb079f5de9f09fc00c297d5313bb5bfa1958d  canonical_manuscript_source.zip
+56d39005ae6f59b2a6d3b1da6c56a5bf43c4d4c4e6e528a0fdd2b9894c97153e  canonical_main_figures_v3.zip

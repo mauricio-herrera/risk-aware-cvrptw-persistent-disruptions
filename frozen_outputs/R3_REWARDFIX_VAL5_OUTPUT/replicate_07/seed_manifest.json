@@ -1,0 +1,23 @@
+{
+  "replicate": 7,
+  "scenario_train": 41001,
+  "scenario_validation": 42001,
+  "scenario_search": 43001,
+  "scenario_test": 44001,
+  "alns_nominal": 651001,
+  "alns_mean": 652001,
+  "alns_cvar": 653001,
+  "rl_ff_train": 654001,
+  "rl_gru_train": 655001,
+  "rl_search_ff_mean": 656001,
+  "rl_search_ff_cvar": 656002,
+  "rl_search_gru_mean": 656003,
+  "rl_search_gru_cvar": 656004,
+  "validation_rollout_seeds": [
+    57001,
+    57002,
+    57003,
+    57004,
+    57005
+  ]
+}

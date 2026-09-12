@@ -1,0 +1,7 @@
+FROZEN RESULT AUDIT: PASS
+R3 parity: 6/6 methods at 25,100 scenario evals and 250 candidates
+R4E1: 9/9 days positive; mean delta J=8.611341, mean delta tail=7.276041
+R4E2: 80/80 structural zero-shot reports pass
+R5-H: 523 attempts, 87 changes, realized changed-run outcomes 18/3/44
+Citations: 25 used = 25 bibliography entries
+Main Figures 1-6 V3: byte-identical in PDF/PNG/TIFF

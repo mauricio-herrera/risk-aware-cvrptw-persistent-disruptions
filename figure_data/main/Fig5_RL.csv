@@ -1,0 +1,7 @@
+criterion,method,objective_mean,objective_sd
+Mean,ALNS,374.97,3.24
+Mean,RL-FF,375.585,3.629
+Mean,RL-GRU,375.479,3.225
+CVaR,ALNS,396.437,13.213
+CVaR,RL-FF,393.67,12.277
+CVaR,RL-GRU,393.181,15.841

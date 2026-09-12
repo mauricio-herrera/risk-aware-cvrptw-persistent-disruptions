@@ -1,0 +1,53 @@
+======================================
+R3 UNIFORM-POLICY CONTROL
+replicate=05
+P(operator) = (1/3, 1/3, 1/3)
+training = NONE
+======================================
+
+NOTE: during the frozen base run, console labels RL-* are temporary placeholders.
+Outputs are relabeled as Uniform-* after completion.
+
+
+Generating four independent scenario banks...
+Loading frozen V5 OR-Tools initial solution...
+Running ALNS-Nominal...
+Running ALNS-Mean...
+Running ALNS-CVaR...
+Training RL-FF-Mean...
+Frozen-policy search RL-FF-Mean...
+Training RL-FF-CVaR...
+Frozen-policy search RL-FF-CVaR...
+Training RL-GRU-Mean...
+Frozen-policy search RL-GRU-Mean...
+Training RL-GRU-CVaR...
+Frozen-policy search RL-GRU-CVaR...
+
+Search-budget gate: PASS
+Evaluating all methods on independent common test bank...
+
+====================================
+R3-FAST-SMOKE: PASS
+====================================
+Train bank      : 100
+Validation bank : 100
+Search bank     : 100
+Test bank       : 1000
+Matched stochastic search budget: 25100
+
+TEST RESULTS (sorted by CVaR95)
+
+      method  distance_km  tard_mean  tard_cvar95  on_time_mean  training_runtime_s  search_runtime_s  search_scenario_evals  search_null_proposals
+   ALNS-CVaR        384.8   0.519255     8.862222      0.998385            0.000000         28.277817                  25100                     15
+  RL-FF-CVaR        369.0   0.685727    10.308983      0.996269            0.000344         35.504859                  25100                     44
+ RL-GRU-CVaR        380.9   1.258760    10.606219      0.992218            0.000343         24.493414                  25100                      9
+ RL-GRU-Mean        377.4   2.232448    15.152760      0.989718            0.000329         36.569112                  25100                     55
+   ALNS-Mean        373.4   1.064147    15.664304      0.995372            0.000000         37.569060                  25100                     57
+  RL-FF-Mean        371.0   1.622966    27.587379      0.995987            0.000391         47.502299                  25100                     98
+    OR-Tools        367.2  13.540746    64.849501      0.973192            0.000000          0.000000                      0                      0
+ALNS-Nominal        367.2  13.540746    64.849501      0.973192            0.000000         28.478053                      0                     53
+
+Output: /Users/mauricioherrera/PycharmProjects/TRIP-Major-Revision/TRIP_R3_DAY1_FAST_SMOKE_V1/R3_UNIFORM_CONTROL_OUTPUT/replicate_05
+
+R3 UNIFORM CONTROL COMPLETE:
+R3_UNIFORM_CONTROL_OUTPUT/replicate_05

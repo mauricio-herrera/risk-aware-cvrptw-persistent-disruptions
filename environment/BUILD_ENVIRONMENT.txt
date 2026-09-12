@@ -1,0 +1,8 @@
+Build date: 2026-09-10
+Python: Python 3.13.5
+pandas: 2.2.3
+numpy: 2.3.5
+matplotlib: 3.10.8
+Pillow: 12.3.0
+pdflatex: pdfTeX 3.141592653-2.6-1.40.26 (TeX Live 2025/dev/Debian)
+bibtex8: This is 8-bit Big BibTeX version 0.99d-x4.02 (TeX Live 2025/dev)

@@ -1,0 +1,4 @@
+2026-09-10T12:37:02.994606+00:00 D05_R02_P012 elapsed=30.5s cumulative_dddas=693.6s peak_rss=0.100GB
+2026-09-10T12:40:06.016040+00:00 D05_R02_P018 elapsed=30.8s cumulative_dddas=875.8s peak_rss=0.100GB
+2026-09-10T12:40:36.870932+00:00 D05_R02_P018 elapsed=61.6s cumulative_dddas=906.7s peak_rss=0.100GB
+2026-09-10T12:41:58.978601+00:00 D05_R02_P019 elapsed=30.1s cumulative_dddas=988.6s peak_rss=0.100GB

@@ -1,0 +1,43 @@
+==================================================================================
+R4-E1 NOMINAL CROSS-DAY AGGREGATE ANALYSIS
+==================================================================================
+27 replicate runs          : PASS
+Frozen initial-route gate  : PASS
+Search-budget gate         : PASS
+Contrast reconstruction    : PASS
+max reconstruction error   : 6.040e-14
+
+DAY-LEVEL CONTRASTS (3 replicates averaged first)
+ day  Jcvar_gain_mean_minus_cvar  Jcvar_gain_within_day_sd  tail_gain_mean_minus_cvar  tail_gain_within_day_sd
+   1                   10.545456                  9.810795                   6.789395                 5.495776
+   2                    4.960426                  3.663610                   4.096879                 2.167091
+   3                    1.831966                  6.546677                   1.482650                 2.788923
+   4                   11.609122                 21.922704                  12.554561                14.504316
+   5                    1.772706                 16.444889                   5.569687                 4.843094
+   6                    8.968046                 24.250583                   4.800690                10.658080
+   7                   10.856457                 16.404346                   9.428228                 8.224275
+   8                   13.562149                  7.801920                  11.531074                 4.242599
+   9                   13.395743                 15.724014                   9.231205                 9.962924
+
+CROSS-DAY INFERENCE (n=9 DAYS)
+                                    contrast      mean        sd    median  ci95_boot_lo  ci95_boot_hi  exact_signflip_p  positive_days  ties  negative_days
+  PRIMARY: J_CVaR gain ALNS-Mean - ALNS-CVaR  8.611341  4.628071 10.545456      5.662326     11.313855          0.003906              9     0              0
+SECONDARY: tardiness CVaR95 gain Mean - CVaR  7.276041  3.663484  6.789395      5.027463      9.521828          0.003906              9     0              0
+         CONTROL: J_Mean gain OR - ALNS-Mean 14.331343 13.069198  8.987955      6.886082     22.882899          0.003906              9     0              0
+         CONTROL: J_CVaR gain OR - ALNS-CVaR 55.414592 37.573367 51.252559     33.579524     79.568054          0.003906              9     0              0
+      CONTROL: tail CVaR gain OR - ALNS-CVaR 31.548037 19.145476 30.876279     20.268123     43.755641          0.003906              9     0              0
+
+METHOD DESCRIPTIVES
+   method  distance_mean_km  tard_mean_min  tard_cvar95_mean_min  on_time_mean     J_mean     J_cvar  external_wall_mean_s
+ALNS-CVaR        406.548148       1.918364             15.843165      0.994478 410.384875 438.234478             23.816027
+ALNS-Mean        400.607407       3.239842             23.119206      0.991075 407.087092 446.845819             28.722167
+ OR-Tools        398.866667      11.275884             47.391202      0.975435 421.418435 493.649070              0.000000
+
+REPLICATE SIGNS — DESCRIPTIVE ONLY
+                  contrast  n_replicates  positive_replicates  ties  negative_replicates                                                               note
+Jcvar_gain_mean_minus_cvar            27                   20     1                    6 Descriptive only; replicates are not the cross-day inference unit.
+ tail_gain_mean_minus_cvar            27                   24     1                    2 Descriptive only; replicates are not the cross-day inference unit.
+
+==================================================================================
+R4-E1 AGGREGATE ANALYSIS: PASS
+==================================================================================

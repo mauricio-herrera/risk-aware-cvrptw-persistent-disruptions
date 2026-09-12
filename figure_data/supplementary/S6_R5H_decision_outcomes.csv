@@ -1,0 +1,7 @@
+level,category,count,denominator
+conditional_change,positive conditional gain,87,87
+changed_run,realized improve,18,65
+changed_run,realized tie,3,65
+changed_run,realized worsen,44,65
+change_location,next customer changed,19,87
+change_location,later suffix only,68,87

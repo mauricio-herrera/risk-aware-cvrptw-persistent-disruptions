@@ -1,0 +1,15 @@
+{
+  "stage": "R4-D confirmatory multiseed analysis",
+  "n_replicates": 10,
+  "bootstrap_B": 100000,
+  "bootstrap_seed": 20260905,
+  "primary_contrasts": [
+    "C1 = OR-Tools tardiness CVaR95 at eta=.70 minus eta=0.",
+    "C2 = [J_CVaR(ALNS-Mean) - J_CVaR(ALNS-CVaR)] at eta=.70 minus the same gain at eta=0."
+  ],
+  "interpretation_rule": "Positive C1 supports increased fixed-route tail risk under stronger persistence. Positive C2 supports increased value of CVaR-oriented search under stronger persistence. No direction is required for protocol validity.",
+  "structural_budget_gate": true,
+  "contrast_reconstruction_pass": true,
+  "max_contrast_reconstruction_error": 5.684341886080802e-14,
+  "overall_pass": true
+}
