@@ -2,6 +2,8 @@
 
 ## Reproducibility package
 
+[![DOI](https://zenodo.org/badge/1367335736.svg)](https://doi.org/10.5281/zenodo.22726345)
+
 This repository contains the frozen reproducibility materials supporting the
 revised manuscript:
 
@@ -9,6 +11,17 @@ revised manuscript:
 Tail-Risk Planning and Selective Dynamic Recourse**
 
 Manuscript reference: **TRIP-D-26-00192**
+
+Author: **Mauricio Herrera-Marín**  
+ORCID: **0000-0002-9604-3077**  
+Affiliation: **Universidad del Desarrollo**
+
+Archived release:
+
+- Version: **v1.0.0**
+- Version DOI: **10.5281/zenodo.22726346**
+- Concept DOI: **10.5281/zenodo.22726345**
+- GitHub release: https://github.com/mauricio-herrera/risk-aware-cvrptw-persistent-disruptions/releases/tag/v1.0.0
 
 The package is designed to make the final numerical evidence, figure
 construction, manuscript source, supplementary material, and computational
